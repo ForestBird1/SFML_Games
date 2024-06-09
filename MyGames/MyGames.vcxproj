@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AStarTestMain.cpp" />
+    <ClCompile Include="BasedGame.cpp" />
     <ClCompile Include="BreakoutGameMain.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStarTestMain.h" />
+    <ClInclude Include="BasedGame.h" />
     <ClInclude Include="BreakoutGameMain.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="MyGamesMain.h" />

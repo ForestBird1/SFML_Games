@@ -52,7 +52,12 @@ void MyGamesMain::Main()
                 _window.close();
 
             _btn_do_breakout_game.handleEvent(event, _window);
+        }
 
+        if (_selected_game_type != EGameType::Title &&
+            sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            _selected_game_type = EGameType::Title;
         }
 
         _window.clear(sf::Color(128, 128, 128));
@@ -69,13 +74,9 @@ void MyGamesMain::Render()
         _btn_do_breakout_game.draw(_window);
     }
         break;
-    case Breakout_Game:
-    {
-        breakoutgame_main.Tick();
-        breakoutgame_main.Render(_window);
-    }
-        break;
     default:
+        _selected_game->Tick();
+        _selected_game->Render(_window);
         break;
     }
 }
@@ -91,12 +92,14 @@ void MyGamesMain::OnClickedDoBreakoutGame()
     break;
     case Breakout_Game:
     {
-        breakoutgame_main.GameInit();
+        _selected_game = &_breakoutgame_main;
     }
     break;
     default:
         break;
     }
+
+    _selected_game->GameInit();
 }
 
 

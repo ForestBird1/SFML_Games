@@ -5,20 +5,20 @@
 
 #include <SFML/Graphics.hpp>
 
-class BreakoutGameMain
+#include "BasedGame.h"
+
+class BreakoutGameMain : public BasedGame
 {
 #pragma region Init,Render
 public:
 	BreakoutGameMain();
 	~BreakoutGameMain();
 public:
-	void GameInit();
+	void GameInit() override;
 
 	//Tick이 먼저 호출되고 렌더링합니다
-	void Tick();
-	void Render(sf::RenderWindow& window);
-private:
-	sf::RenderWindow _window;
+	void Tick() override;
+	void Render(sf::RenderWindow& window) override;
 #pragma endregion
 
 #pragma region Data

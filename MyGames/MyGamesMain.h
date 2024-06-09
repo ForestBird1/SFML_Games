@@ -5,6 +5,7 @@
 //class Button;
 #include "Button.h"
 
+#include "BasedGame.h"
 #include "BreakoutGameMain.h"
 
 enum EGameType {
@@ -39,7 +40,8 @@ private:
 private:
 	EGameType _selected_game_type = EGameType::Title;
 
-	BreakoutGameMain breakoutgame_main;
+	BasedGame* _selected_game = nullptr;
+	BreakoutGameMain _breakoutgame_main;
 #pragma endregion
 
 
