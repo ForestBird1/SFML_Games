@@ -1,5 +1,6 @@
 #include "BreakoutGameMain.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 BreakoutGameMain::BreakoutGameMain()
 {
@@ -8,22 +9,29 @@ BreakoutGameMain::BreakoutGameMain()
 
 void BreakoutGameMain::PostInit()
 {
-    //Paddle
     _paddle.setSize(sf::Vector2f(_paddle_size_x, _paddle_size_y));
     _paddle.setFillColor(_paddle_color);
-    _paddle.setPosition((1920 - _paddle_size_x) *0.5f, 1080 - 100);
 
-    //Ball
     _ball.setRadius(_ball_size_radius);
     _ball.setFillColor(_ball_color);
+
+    _bricks.reserve(_brick_count_max);
+}
+void BreakoutGameMain::GameInit()
+{
+    //Paddle
+    _paddle.setPosition((1920 - _paddle_size_x) * 0.5f, 1080 - 100);
+
+    //Ball
     _ball.setPosition(_paddle.getPosition().x + _paddle_size_x * 0.5f, _paddle.getPosition().y - 100);
-    _ball_velocity = sf::Vector2f(_ball_speed, -_ball_speed);
+    _ball_velocity = sf::Vector2f(_ball_speed_max, -_ball_speed_max);
 
     //Bricks
+    _bricks.clear();
+
     const int8_t i_coloum = 18;
     const int8_t i_row = 10;
 
-    _bricks.reserve(_brick_count_max);
     sf::RectangleShape brick(sf::Vector2f(_brick_size_x, _brick_size_y));
     brick.setFillColor(_brick_color);
     brick.setOutlineColor(sf::Color::Black); // 테두리 색상 설정
@@ -32,20 +40,20 @@ void BreakoutGameMain::PostInit()
     for (int32_t i = 0; i < i_coloum; ++i) {
         for (int32_t j = 0; j < i_row; ++j) {
             sf::RectangleShape b = brick;
-            //b.setPosition(60 * i + 50, 30 * j + 50);
-            b.setPosition(60+ i*_brick_size_x + i* 6, 100+_brick_size_y * j + j * 6);
+            b.setPosition(60 + i * _brick_size_x + i * 6, 100 + _brick_size_y * j + j * 6);
             _bricks.push_back(b);
         }
     }
 }
 void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
 {
+    std::cout << _ball_velocity.x << std::endl;
     //Move Paddle
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _paddle.getPosition().x > 0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _paddle.getPosition().x > 0)
     {
         _paddle.move(-_paddle_speed, 0);
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && _paddle.getPosition().x < 1920 - _paddle_size_x)
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _paddle.getPosition().x < 1920 - _paddle_size_x)
     {
         _paddle.move(_paddle_speed, 0);
     }

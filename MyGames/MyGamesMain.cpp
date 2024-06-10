@@ -64,18 +64,31 @@ void MyGamesMain::Main()
     while (_window.isOpen())
     {
         sf::Event event;
-        while (_window.pollEvent(event))
+
+        //이벤트처리 루프
+        LoopEvent(event);
+
+        //게임루프
+        LoopGame(event);
+
+        //렌더링루프
+        LoopRender();
+    }
+}
+
+void MyGamesMain::LoopEvent(sf::Event& event)
+{
+    //Event루프
+    
+    while (_window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            _window.close();
+
+        if (_selected_game_type == EGameType::Title)
         {
-            if (event.type == sf::Event::Closed)
-                _window.close();
-
-            if (_selected_game_type == EGameType::Title)
-            {
-                for (Button& button : _rendering_buttons)
-                    button.handleEvent(event, _window);
-            }
-
-            UpdateGame(event);
+            for (Button& button : _rendering_buttons)
+                button.handleEvent(event, _window);
         }
 
         if (_selected_game_type != EGameType::Title &&
@@ -86,22 +99,18 @@ void MyGamesMain::Main()
                 button.SetVisible(true);
         }
 
-        
-
-        _window.clear(sf::Color(128, 128, 128));
-        Render();
-        _window.display();
     }
 }
-
-void MyGamesMain::UpdateGame(sf::Event& event)
+void MyGamesMain::LoopGame(sf::Event& event)
 {
     if (_selected_game_type == EGameType::Title) return;
 
     _selected_game->Tick(event,_window);
 }
-void MyGamesMain::Render()
+void MyGamesMain::LoopRender()
 {
+    _window.clear(sf::Color(128, 128, 128));
+
     switch (_selected_game_type)
     {
     case Title:
@@ -114,6 +123,8 @@ void MyGamesMain::Render()
         _selected_game->Render(_window);
         break;
     }
+
+    _window.display();
 }
 
 void MyGamesMain::OnClickedDoBreakoutGame(const EGameType e_game_type)

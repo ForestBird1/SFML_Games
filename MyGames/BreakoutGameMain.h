@@ -14,7 +14,7 @@ public:
 public:
 	void PostInit();
 
-	//Tick이 먼저 호출되고 렌더링합니다
+	void GameInit() override;
 	void Tick(sf::Event& event, sf::RenderWindow& window) override;
 	void Render(sf::RenderWindow& window) override;
 #pragma endregion
@@ -24,6 +24,7 @@ private:
 	uint8_t _ball_size_radius = 10;
 	sf::Color _ball_color = sf::Color::Red;
 	sf::Vector2f _ball_velocity = sf::Vector2f(0.3f, -0.3f);
+	float _ball_speed_max = 0.4f;
 	float _ball_speed = 0.4f;
 
 	sf::CircleShape _ball;

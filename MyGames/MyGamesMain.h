@@ -31,10 +31,22 @@ private:
 	sf::Font _font;
 #pragma endregion
 
+#pragma region Event
+private:
+	void LoopEvent(sf::Event& event);
+#pragma endregion
+
+
+#pragma region Game
+private:
+	void LoopGame(sf::Event& event);
+#pragma endregion
+
+
 #pragma region Render
 private:
-	void UpdateGame(sf::Event& event);
-	void Render();
+	void LoopRender();
+	
 private:
 	/*
 	* 생성자에서 초기화되고 렌더됩니다
