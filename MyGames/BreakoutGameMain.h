@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <vector>
 
-#include <SFML/Graphics.hpp>
-
 #include "BasedGame.h"
 
 class BreakoutGameMain : public BasedGame
@@ -14,10 +12,10 @@ public:
 	BreakoutGameMain();
 	~BreakoutGameMain();
 public:
-	void GameInit() override;
+	void PostInit();
 
 	//Tick이 먼저 호출되고 렌더링합니다
-	void Tick() override;
+	void Tick(sf::Event& event, sf::RenderWindow& window) override;
 	void Render(sf::RenderWindow& window) override;
 #pragma endregion
 

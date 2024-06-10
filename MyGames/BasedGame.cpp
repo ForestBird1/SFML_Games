@@ -12,10 +12,9 @@ BasedGame::~BasedGame()
 
 void BasedGame::GameInit()
 {
-	std::cout << "BasedGame::GameInit()" << std::endl;
 	/*virtual*/
 }
-void BasedGame::Tick()
+void BasedGame::Tick(sf::Event& event, sf::RenderWindow& window)
 {
 	/*virtual*/
 }

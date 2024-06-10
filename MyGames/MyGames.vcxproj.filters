@@ -19,6 +19,9 @@
     <Filter Include="소스 파일\UI">
       <UniqueIdentifier>{5305295d-9da6-477e-a254-3160a5041bf7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\AStarTest">
+      <UniqueIdentifier>{45655073-b5a8-40e2-b2f5-9709e19e95b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,11 +36,14 @@
     <ClCompile Include="MyGamesMain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AStarTestMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="BasedGame.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarTestMain.cpp">
+      <Filter>소스 파일\AStarTest</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarTile.cpp">
+      <Filter>소스 파일\AStarTest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +60,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="BasedGame.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarTile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

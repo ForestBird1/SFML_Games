@@ -7,10 +7,12 @@
 
 #include "BasedGame.h"
 #include "BreakoutGameMain.h"
+#include "AStarTestMain.h"
 
 enum EGameType {
 	Title,
 	Breakout_Game,
+	AStarTest,
 };
 
 
@@ -21,12 +23,17 @@ class MyGamesMain
 public:
 	MyGamesMain();
 	~MyGamesMain();
+
+	const sf::Font& GetFont() const;
 public:
 	void Main();
+private:
+	sf::Font _font;
 #pragma endregion
 
 #pragma region Render
 private:
+	void UpdateGame(sf::Event& event);
 	void Render();
 private:
 	/*
@@ -42,13 +49,18 @@ private:
 
 	BasedGame* _selected_game = nullptr;
 	BreakoutGameMain _breakoutgame_main;
+	AStarTestMain _astartest_main;
 #pragma endregion
 
 
 #pragma region UI
 private:
-	void OnClickedDoBreakoutGame();
+	void OnClickedDoBreakoutGame(const EGameType e_game_type);
+private:
+	std::vector<Button> _rendering_buttons;
+
 	Button _btn_do_breakout_game;
+	Button _btn_do_astar_test;
 #pragma endregion
 
 

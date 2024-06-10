@@ -6,7 +6,7 @@ BreakoutGameMain::BreakoutGameMain()
 
 }
 
-void BreakoutGameMain::GameInit()
+void BreakoutGameMain::PostInit()
 {
     //Paddle
     _paddle.setSize(sf::Vector2f(_paddle_size_x, _paddle_size_y));
@@ -38,7 +38,7 @@ void BreakoutGameMain::GameInit()
         }
     }
 }
-void BreakoutGameMain::Tick()
+void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
 {
     //Move Paddle
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _paddle.getPosition().x > 0)
