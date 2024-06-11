@@ -15,7 +15,7 @@ void BreakoutGameMain::PostInit()
     _ball.setRadius(_ball_size_radius);
     _ball.setFillColor(_ball_color);
 
-    _bricks.reserve(_brick_count_max);
+    _bricks.Reserve(_brick_count_max);
 }
 void BreakoutGameMain::GameInit()
 {
@@ -27,7 +27,7 @@ void BreakoutGameMain::GameInit()
     _ball_velocity = sf::Vector2f(_ball_speed_max, -_ball_speed_max);
 
     //Bricks
-    _bricks.clear();
+    _bricks.Clear();
 
     const int8_t i_coloum = 18;
     const int8_t i_row = 10;
@@ -41,13 +41,13 @@ void BreakoutGameMain::GameInit()
         for (int32_t j = 0; j < i_row; ++j) {
             sf::RectangleShape b = brick;
             b.setPosition(60 + i * _brick_size_x + i * 6, 100 + _brick_size_y * j + j * 6);
-            _bricks.push_back(b);
+            _bricks.Add(b);
         }
     }
 }
 void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
 {
-    std::cout << _ball_velocity.x << std::endl;
+    //std::cout << _ball_velocity.x << std::endl;
     //Move Paddle
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _paddle.getPosition().x > 0)
     {
@@ -72,15 +72,15 @@ void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
         _ball_velocity.y = -_ball_velocity.y;
 
     //Brick과 부딪혔는지 확인합니다
-    for (auto it = _bricks.begin(); it != _bricks.end();)
+    for (size_t i = 0, i_len = _bricks.Num(); i < i_len; ++i)
     {
-        if (_ball.getGlobalBounds().intersects(it->getGlobalBounds())) {
+        sf::RectangleShape& brick = _bricks[i];
+
+        //공은 한번에 2개이상 부딪힐 일이 없기 때문에 부딪히면 루프를 종료합니다
+        if (_ball.getGlobalBounds().intersects(brick.getGlobalBounds())) {
             _ball_velocity.y = -_ball_velocity.y;
-            it = _bricks.erase(it);
+            _bricks.RemoveAtSwap(i);
             break;
-        }
-        else {
-            ++it;
         }
     }
 }

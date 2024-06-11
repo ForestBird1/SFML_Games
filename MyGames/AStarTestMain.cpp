@@ -15,29 +15,30 @@ AStarTestMain::~AStarTestMain()
 
 void AStarTestMain::PostInit(MyGamesMain* game_main)
 {
-	_draw_row.reserve(100);
-	_draw_col.reserve(100);
-	_tile_nearest_x_indexes.reserve(4);
-	_tile_nearest_y_indexes.reserve(4);
+	_draw_tiles.Reserve(100);
+	_draw_row.Reserve(100);
+	_draw_col.Reserve(100);
+	_tile_nearest_x_indexes.Reserve(4);
+	_tile_nearest_y_indexes.Reserve(4);
 	_tile_nearest_x_indexes = { 0,1,-1,0 };
 	_tile_nearest_y_indexes = { 1,0,0,-1 };
 
 	int16_t i_index = 0;
-	_tiles.resize(_row, std::vector<AStarTile>(_column));
-
-	for (uint8_t i_row = 0; i_row < _row; ++i_row)
+	_tiles.Resize(_row, MyArray<AStarTile>(_column, AStarTile()));
+	AStarTile* tile = nullptr;
+	for (size_t i_row = 0; i_row < _row; ++i_row)
 	{
-		for (uint8_t i_col = 0; i_col < _column; ++i_col)
+		for (size_t i_col = 0; i_col < _column; ++i_col)
 		{
-			AStarTile& tile = _tiles[i_row][i_col];
-			tile.PostInit(_tile_size, ++i_index, i_row, i_col, this, game_main);
+			tile = &_tiles[i_row][i_col];
+			tile->PostInit(_tile_size, ++i_index, i_row, i_col, this, game_main);
 			if (i_index == 129)
 			{
-				_nd_start = &tile;
+				_nd_start = tile;
 			}
 			else if (i_index == 469)
 			{
-				_nd_dest = &tile;
+				_nd_dest = tile;
 			}
 		}
 	}
@@ -51,9 +52,9 @@ void AStarTestMain::GameInit()
 void AStarTestMain::Tick(sf::Event& event, sf::RenderWindow& window)
 {
 	//타일 클릭이벤트 감지(길<->벽)
-	for (uint8_t i_row = 0; i_row < _row; ++i_row)
+	for (size_t i_row = 0; i_row < _row; ++i_row)
 	{
-		for (uint8_t i_col = 0; i_col < _column; ++i_col)
+		for (size_t i_col = 0; i_col < _column; ++i_col)
 		{
 			_tiles[i_row][i_col].TileHandlingEvent(event, window);
 		}
@@ -62,9 +63,9 @@ void AStarTestMain::Tick(sf::Event& event, sf::RenderWindow& window)
 void AStarTestMain::Render(sf::RenderWindow& window)
 {
 	//전체 타일 그리기
-	for (uint8_t i_row = 0; i_row < _row; ++i_row)
+	for (size_t i_row = 0; i_row < _row; ++i_row)
 	{
-		for (uint8_t i_col = 0; i_col < _column; ++i_col)
+		for (size_t i_col = 0; i_col < _column; ++i_col)
 		{
 			_tiles[i_row][i_col].GetTileButton().draw(window);
 		}
@@ -80,14 +81,15 @@ void AStarTestMain::Render(sf::RenderWindow& window)
 
 void AStarTestMain::UpdateAStar()
 {
-	for (uint8_t i_row = 0; i_row < _row; ++i_row)
+	for (size_t i_row = 0; i_row < _row; ++i_row)
 	{
-		for (uint8_t i_col = 0; i_col < _column; ++i_col)
+		for (size_t i_col = 0; i_col < _column; ++i_col)
 		{
 			_tiles[i_row][i_col].TileInit();
 		}
 	}
 
+	//<algorithm> 의 호환을 위해 MyArray<>가 아닌 std::vector<>를 사용했습니다
 	std::vector<AStarTile*> openList;
 	std::unordered_set<AStarTile*> closedList;
 	std::vector<AStarTile*> near_list;
@@ -96,7 +98,7 @@ void AStarTestMain::UpdateAStar()
 	closedList.reserve(_row * _column);
 	openList.push_back(_nd_start);
 
-	_draw_tiles.clear();
+	_draw_tiles.Clear();
 
 	while (openList.empty() == false)
 	{
@@ -112,10 +114,12 @@ void AStarTestMain::UpdateAStar()
 		{
 			while (nd_current->_parent != nullptr)
 			{
-				_draw_tiles.push_back(nd_current);
+				//_draw_tiles.Add(nd_current);
+				_draw_tiles.Insert(0, nd_current);
 				nd_current = nd_current->_parent;
 			}
-			std::reverse(_draw_tiles.begin(), _draw_tiles.end());
+
+			//std::reverse(_draw_tiles.begin(), _draw_tiles.end());
 			return;
 		}
 
@@ -123,7 +127,7 @@ void AStarTestMain::UpdateAStar()
 		//인접한 노드 모두 가져오기
 		closedList.insert(nd_current);
 		near_list.clear();
-		for (int i = 0; i < 4; ++i)
+		for (size_t i = 0; i < 4; ++i)
 		{
 			int8_t i_nearest_row = nd_current->_row + _tile_nearest_x_indexes[i];
 			int8_t i_nearest_col = nd_current->_column + _tile_nearest_y_indexes[i];

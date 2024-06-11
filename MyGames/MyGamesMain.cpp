@@ -109,7 +109,10 @@ void MyGamesMain::LoopGame(sf::Event& event)
 }
 void MyGamesMain::LoopRender()
 {
+    
+
     _window.clear(sf::Color(128, 128, 128));
+
 
     switch (_selected_game_type)
     {
@@ -120,7 +123,13 @@ void MyGamesMain::LoopRender()
     }
         break;
     default:
-        _selected_game->Render(_window);
+    {
+        if (_selected_game != nullptr)
+        {
+            _selected_game->Render(_window);
+        }
+    }
+        
         break;
     }
 

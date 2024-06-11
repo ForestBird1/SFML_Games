@@ -5,13 +5,64 @@
 
 AStarTile::AStarTile()
 {
-	
+	//std::cout << "Construct: Index: " << _index << std::endl;
 }
+
+//AStarTile::AStarTile(const AStarTile& other)
+//{
+//	std::cout << "Construct: Index: " << _index << std::endl;
+//	CopyFrom(other);
+//}
+//
+//AStarTile& AStarTile::operator=(const AStarTile& other)
+//{
+//	if (this != &other)
+//	{
+//		CopyFrom(other);
+//	}
+//	return *this;
+//}
+//
+//AStarTile::AStarTile(AStarTile&& other) noexcept
+//{
+//	std::cout << "Construct: Index: " << _index << std::endl;
+//	MoveFrom(std::move(other));
+//}
+//
+//AStarTile& AStarTile::operator=(AStarTile&& other) noexcept
+//{
+//	if (this != &other)
+//	{
+//		MoveFrom(std::move(other));
+//	}
+//	return *this;
+//}
+
+//void AStarTile::CopyFrom(const AStarTile& other)
+//{
+//	_row = other._row;
+//	_column = other._column;
+//	_button = other._button;
+//	_index = other._index;
+//}
+//
+//void AStarTile::MoveFrom(AStarTile&& other)
+//{
+//	_row = other._row;
+//	_column = other._column;
+//	_button = std::move(other._button);
+//
+//	other._row = 0;
+//	other._column = 0;
+//}
+
 AStarTile::~AStarTile()
 {
-
+	//std::cout << "Destruct: Index: " << _index << std::endl;
 }
-void AStarTile::PostInit(const uint8_t i_size, const uint16_t i_index, const uint8_t i_row, const uint8_t i_column, AStarTestMain* main, MyGamesMain* game_main)
+
+
+void AStarTile::PostInit(int32_t i_size, int32_t i_index, int32_t i_row, int32_t i_column, AStarTestMain* main, MyGamesMain* game_main)
 {
 	_astar_main = main;
 	_row = i_row;

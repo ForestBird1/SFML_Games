@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdlib.h>
-#include <vector>
+#include "MyArray.h"
 
 #include "BasedGame.h"
 
@@ -41,7 +41,7 @@ private:
 	uint8_t _brick_size_y = 30;
 	sf::Color _brick_color = sf::Color::Blue;
 
-	std::vector<sf::RectangleShape> _bricks;
+	MyArray<sf::RectangleShape> _bricks;
 #pragma endregion
 
 

@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\AStarTest">
       <UniqueIdentifier>{45655073-b5a8-40e2-b2f5-9709e19e95b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Containers">
+      <UniqueIdentifier>{671b0255-b19c-4c2c-8846-df0de994ff67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,25 +48,31 @@
     <ClCompile Include="AStarTile.cpp">
       <Filter>소스 파일\AStarTest</Filter>
     </ClCompile>
+    <ClCompile Include="MyArray.cpp">
+      <Filter>소스 파일\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BreakoutGameMain.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MyGamesMain.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AStarTestMain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="BasedGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MyArray.h">
+      <Filter>소스 파일\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarTestMain.h">
+      <Filter>소스 파일\AStarTest</Filter>
+    </ClInclude>
     <ClInclude Include="AStarTile.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\AStarTest</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakoutGameMain.h">
+      <Filter>소스 파일\BreakoutGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>소스 파일\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

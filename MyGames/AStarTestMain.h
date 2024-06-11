@@ -3,6 +3,8 @@
 #include "BasedGame.h"
 #include "AStarTile.h"
 #include <SFML/Graphics.hpp>
+#include "MyArray.h"
+#include <vector>
 
 class MyGamesMain;
 
@@ -35,13 +37,14 @@ private:
 	AStarTile* _nd_start = nullptr;
 	AStarTile* _nd_dest = nullptr;
 
-	std::vector< std::vector<AStarTile>> _tiles;
-	std::vector<int32_t> _tile_nearest_x_indexes;
-	std::vector<int32_t> _tile_nearest_y_indexes;
+	MyArray<MyArray<AStarTile>> _tiles;
+	//std::vector<std::vector<AStarTile>> _tiles;
+	MyArray<int32_t> _tile_nearest_x_indexes;
+	MyArray<int32_t> _tile_nearest_y_indexes;
 
-	std::vector<AStarTile*> _draw_tiles;
-	std::vector<uint8_t> _draw_row;
-	std::vector<uint8_t> _draw_col;
+	MyArray<AStarTile*> _draw_tiles;
+	MyArray<uint8_t> _draw_row;
+	MyArray<uint8_t> _draw_col;
 #pragma endregion
 };
 

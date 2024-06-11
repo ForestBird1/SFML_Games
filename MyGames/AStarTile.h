@@ -10,9 +10,19 @@ class AStarTile
 {
 public:
 	friend class AStarTestMain;
+
 	AStarTile();
+	//AStarTile(const AStarTile& other); // 복사 생성자
+	//AStarTile& operator=(const AStarTile& other); // 복사 할당 연산자
+	//AStarTile(AStarTile&& other) noexcept; // 이동 생성자
+	//AStarTile& operator=(AStarTile&& other) noexcept; // 이동 할당 연산자
 	~AStarTile();
-	void PostInit(const uint8_t i_size, const uint16_t i_index, const uint8_t i_row, const uint8_t i_column, AStarTestMain* main, MyGamesMain* game_main);
+private:
+	//void CopyFrom(const AStarTile& other);
+	//void MoveFrom(AStarTile&& other);
+public:
+
+	void PostInit(int32_t i_size, int32_t i_index, int32_t i_row, int32_t i_column, AStarTestMain* main, MyGamesMain* game_main);
 	void TileInit();
 	void TileHandlingEvent(sf::Event& event, sf::RenderWindow& window);
 	void TileUpdatePathColor();
@@ -27,8 +37,8 @@ private:
 	float f = 0;
 	AStarTile* _parent = nullptr;
 	int32_t _index = 0;
-	uint8_t _row = 0;
-	uint8_t _column = 0;
+	int32_t _row = 0;
+	int32_t _column = 0;
 
 	AStarTestMain* _astar_main = nullptr;
 	bool _is_wall = false;

@@ -25,6 +25,7 @@
     <ClCompile Include="BreakoutGameMain.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyArray.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="BasedGame.h" />
     <ClInclude Include="BreakoutGameMain.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="MyArray.h" />
     <ClInclude Include="MyGamesMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
