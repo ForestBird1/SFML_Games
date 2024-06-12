@@ -27,5 +27,10 @@ protected:
 	unsigned int _display_height = 1080;
 	std::string _display_name = "SFML Game";
 
+	float _delta_time = 0.f;
+private:
+	sf::Time _time;
+	sf::Text _frame_text;
+
 };
 

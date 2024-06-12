@@ -317,6 +317,19 @@ public:
 		return this->my_capacity;
 	}
 
+	//스택의 Pop처럼 마지막 원소를 반환하며 삭제합니다
+	Data& Pop()
+	{
+		const size_t last_index = this->Num() - 1;
+		this->CheckValidIndex(last_index);
+
+		Data& data = this->my_base[last_index];
+
+		RemoveAt(last_index);
+
+		return data;
+	}
+
 	//인덱스 유효성검사를 합니다
 //유효하지 않으면 throw
 	bool CheckValidIndex(const size_t index)

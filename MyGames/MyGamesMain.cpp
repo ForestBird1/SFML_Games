@@ -45,7 +45,7 @@ void MyGamesMain::Main()
     _btn_do_breakout_game.SetFont(_font);
     _btn_do_breakout_game.SetText("Breakout Game");
     _btn_do_breakout_game.setPosition(300, 275);
-    _btn_do_breakout_game.setCallback(std::bind(&MyGamesMain::OnClickedDoBreakoutGame, this, EGameType::Breakout_Game));
+    _btn_do_breakout_game.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Breakout_Game));
     _rendering_buttons.push_back(_btn_do_breakout_game);
 
 
@@ -54,12 +54,21 @@ void MyGamesMain::Main()
     _btn_do_astar_test.SetFont(_font);
     _btn_do_astar_test.SetText("AStarTest");
     _btn_do_astar_test.setPosition(600, 275);
-    _btn_do_astar_test.setCallback(std::bind(&MyGamesMain::OnClickedDoBreakoutGame, this, EGameType::AStarTest));
+    _btn_do_astar_test.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::AStarTest));
     _rendering_buttons.push_back(_btn_do_astar_test);
+
+    _btn_do_invaders.SetSize(200, 50);
+    _btn_do_invaders.SetColor_Shape(sf::Color::Blue);
+    _btn_do_invaders.SetFont(_font);
+    _btn_do_invaders.SetText("Invaders");
+    _btn_do_invaders.setPosition(900, 275);
+    _btn_do_invaders.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Invaders));
+    _rendering_buttons.push_back(_btn_do_invaders);
     
     //Init GameClass
     _astartest_main.PostInit(this);
     _breakoutgame_main.PostInit();
+    _invaders_main.PostInit();
 
     
     Loop();
@@ -127,7 +136,7 @@ void MyGamesMain::ClosedGameWindow()
     _can_render = true;
     Loop();
 }
-void MyGamesMain::OnClickedDoBreakoutGame(const EGameType e_game_type)
+void MyGamesMain::OnClickedGame(const EGameType e_game_type)
 {
     //std::cerr << "Clicked" << std::endl;
     _selected_game_type = e_game_type;
@@ -141,6 +150,9 @@ void MyGamesMain::OnClickedDoBreakoutGame(const EGameType e_game_type)
         break;
     case AStarTest:
         _selected_game = &_astartest_main;
+        break;
+    case Invaders:
+        _selected_game = &_invaders_main;
         break;
     default:
         break;

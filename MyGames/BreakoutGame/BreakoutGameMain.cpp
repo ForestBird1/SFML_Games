@@ -53,13 +53,15 @@ void BreakoutGameMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 {
     //std::cout << _ball_velocity.x << std::endl;
     //Move Paddle
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _paddle.getPosition().x > 0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        _paddle.move(-_paddle_speed, 0);
+        if (_paddle.getPosition().x > 0)
+            _paddle.move(-_paddle_speed, 0);
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _paddle.getPosition().x < 1920 - _paddle_size_x)
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        _paddle.move(_paddle_speed, 0);
+        if (_paddle.getPosition().x < 1920 - _paddle_size_x)
+            _paddle.move(_paddle_speed, 0);
     }
 
     //Move Ball And UpdateVelocity

@@ -23,6 +23,12 @@ void BasedGame::DoLoop(MyGamesMain* main)
 void BasedGame::Loop()
 {
     sf::RenderWindow window(sf::VideoMode(_display_width, _display_height), _display_name);
+    sf::Clock clock;
+    _frame_text.setFont(_main->GetFont());
+    _frame_text.setPosition(sf::Vector2f(2.f, 2.f));
+    _frame_text.setFillColor(sf::Color::Green);
+    _frame_text.setCharacterSize(30);
+    _frame_text.setOutlineThickness(2.f);
 
     while (window.isOpen())
     {
@@ -47,12 +53,18 @@ void BasedGame::Loop()
             LoopEvent(event,window);
         }
 
+        // DeltaTime 계산
+        _time = clock.restart();
+        _delta_time = _time.asSeconds();
+        _frame_text.setString(std::to_string(1.f / _delta_time));
+
         //게임루프
         LoopGame(event, window);
 
         //렌더링루프
         window.clear(sf::Color(128, 128, 128));
         LoopRender(window);
+        window.draw(_frame_text);
         window.display();
     }
 }

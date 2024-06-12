@@ -14,6 +14,7 @@ enum EGameType {
 	Title,
 	Breakout_Game,
 	AStarTest,
+	Invaders,
 };
 
 
@@ -62,12 +63,13 @@ private:
 
 #pragma region UI
 private:
-	void OnClickedDoBreakoutGame(const EGameType e_game_type);
+	void OnClickedGame(const EGameType e_game_type);
 private:
 	std::vector<Button> _rendering_buttons;
 
 	Button _btn_do_breakout_game;
 	Button _btn_do_astar_test;
+	Button _btn_do_invaders;
 #pragma endregion
 
 
