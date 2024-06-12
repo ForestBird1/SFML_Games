@@ -25,7 +25,7 @@
     <ClCompile Include="BreakoutGame\BreakoutGameMain.cpp" />
     <ClCompile Include="Button\Button.cpp" />
     <ClCompile Include="Containers\MyArray.cpp" />
-    <ClCompile Include="InvadersMain.cpp" />
+    <ClCompile Include="Invaders\InvadersMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
   </ItemGroup>
@@ -36,7 +36,7 @@
     <ClInclude Include="BreakoutGame\BreakoutGameMain.h" />
     <ClInclude Include="Button\Button.h" />
     <ClInclude Include="Containers\MyArray.h" />
-    <ClInclude Include="InvadersMain.h" />
+    <ClInclude Include="Invaders\InvadersMain.h" />
     <ClInclude Include="MyGamesMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

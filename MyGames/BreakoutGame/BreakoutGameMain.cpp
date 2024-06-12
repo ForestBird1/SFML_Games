@@ -4,7 +4,7 @@
 
 BreakoutGameMain::BreakoutGameMain()
 {
-
+    _display_name = "SFML BreaoutGame";
 }
 
 void BreakoutGameMain::PostInit()
@@ -45,7 +45,11 @@ void BreakoutGameMain::GameInit()
         }
     }
 }
-void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
+void BreakoutGameMain::LoopEvent(sf::Event& event, sf::RenderWindow& window)
+{
+
+}
+void BreakoutGameMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 {
     //std::cout << _ball_velocity.x << std::endl;
     //Move Paddle
@@ -84,7 +88,7 @@ void BreakoutGameMain::Tick(sf::Event& event, sf::RenderWindow& window)
         }
     }
 }
-void BreakoutGameMain::Render(sf::RenderWindow& window)
+void BreakoutGameMain::LoopRender(sf::RenderWindow& window)
 {
     //Draw
     window.draw(_paddle);

@@ -49,7 +49,7 @@ void AStarTestMain::GameInit()
 {
 
 }
-void AStarTestMain::Tick(sf::Event& event, sf::RenderWindow& window)
+void AStarTestMain::LoopEvent(sf::Event& event, sf::RenderWindow& window)
 {
 	//타일 클릭이벤트 감지(길<->벽)
 	for (size_t i_row = 0; i_row < _row; ++i_row)
@@ -60,7 +60,11 @@ void AStarTestMain::Tick(sf::Event& event, sf::RenderWindow& window)
 		}
 	}
 }
-void AStarTestMain::Render(sf::RenderWindow& window)
+void AStarTestMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
+{
+	
+}
+void AStarTestMain::LoopRender(sf::RenderWindow& window)
 {
 	//전체 타일 그리기
 	for (size_t i_row = 0; i_row < _row; ++i_row)

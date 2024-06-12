@@ -61,8 +61,18 @@ void MyGamesMain::Main()
     _astartest_main.PostInit(this);
     _breakoutgame_main.PostInit();
 
+    
+    Loop();
+}
+
+void MyGamesMain::Loop()
+{
+    static int test = 0;
     while (_window.isOpen())
     {
+        //std::cout << ++test << std::endl;
+        if (_can_render == false) return;
+
         sf::Event event;
 
         //이벤트처리 루프
@@ -82,8 +92,11 @@ void MyGamesMain::LoopEvent(sf::Event& event)
     
     while (_window.pollEvent(event))
     {
-        if (event.type == sf::Event::Closed)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ||
+            event.type == sf::Event::Closed)
+        {
             _window.close();
+        }
 
         if (_selected_game_type == EGameType::Title)
         {
@@ -91,51 +104,29 @@ void MyGamesMain::LoopEvent(sf::Event& event)
                 button.handleEvent(event, _window);
         }
 
-        if (_selected_game_type != EGameType::Title &&
-            sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-        {
-            _selected_game_type = EGameType::Title;
-            for (Button& button : _rendering_buttons)
-                button.SetVisible(true);
-        }
+
 
     }
 }
 void MyGamesMain::LoopGame(sf::Event& event)
 {
-    if (_selected_game_type == EGameType::Title) return;
-
-    _selected_game->Tick(event,_window);
 }
 void MyGamesMain::LoopRender()
 {
-    
-
     _window.clear(sf::Color(128, 128, 128));
 
-
-    switch (_selected_game_type)
-    {
-    case Title:
-    {
-        for(Button& button : _rendering_buttons)
-            button.draw(_window);
-    }
-        break;
-    default:
-    {
-        if (_selected_game != nullptr)
-        {
-            _selected_game->Render(_window);
-        }
-    }
-        
-        break;
-    }
+    for (Button& button : _rendering_buttons)
+        button.draw(_window);
 
     _window.display();
 }
 
+void MyGamesMain::ClosedGameWindow()
+{
+    _selected_game_type = EGameType::Title;
+    _can_render = true;
+    Loop();
+}
 void MyGamesMain::OnClickedDoBreakoutGame(const EGameType e_game_type)
 {
     //std::cerr << "Clicked" << std::endl;
@@ -155,13 +146,9 @@ void MyGamesMain::OnClickedDoBreakoutGame(const EGameType e_game_type)
         break;
     }
 
-    if (_selected_game_type != EGameType::Title)
-    {
-        for (Button& button : _rendering_buttons)
-            button.SetVisible(false);
-    }
-
+    _can_render = false;
     _selected_game->GameInit();
+    _selected_game->DoLoop(this);
 }
 
 

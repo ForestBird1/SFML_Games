@@ -17,8 +17,9 @@ public:
 public:
 	void PostInit(MyGamesMain* game_main);
 	void GameInit() override;
-	void Tick(sf::Event& event, sf::RenderWindow& window) override;
-	void Render(sf::RenderWindow& window) override;
+	void LoopEvent(sf::Event& event, sf::RenderWindow& window) override;
+	void LoopGame(sf::Event& event, sf::RenderWindow& window) override;
+	void LoopRender(sf::RenderWindow& window) override;
 
 	void UpdateAStar();
 

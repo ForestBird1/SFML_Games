@@ -32,31 +32,24 @@ private:
 	sf::Font _font;
 #pragma endregion
 
-#pragma region Event
+#pragma region Loop
 private:
+	void Loop();
 	void LoopEvent(sf::Event& event);
-#pragma endregion
-
-
-#pragma region Game
-private:
 	void LoopGame(sf::Event& event);
-#pragma endregion
-
-
-#pragma region Render
-private:
 	void LoopRender();
-	
 private:
 	/*
 	* 생성자에서 초기화되고 렌더됩니다
 	*/
 	sf::RenderWindow _window;
+
+	bool _can_render = true;
 #pragma endregion
 
-
 #pragma region Game
+public:
+	void ClosedGameWindow();
 private:
 	EGameType _selected_game_type = EGameType::Title;
 

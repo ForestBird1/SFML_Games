@@ -54,7 +54,7 @@
     <ClCompile Include="Button\Button.cpp">
       <Filter>소스 파일\UI</Filter>
     </ClCompile>
-    <ClCompile Include="InvadersMain.cpp">
+    <ClCompile Include="Invaders\InvadersMain.cpp">
       <Filter>소스 파일\Invaders</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <ClInclude Include="Button\Button.h">
       <Filter>소스 파일\UI</Filter>
     </ClInclude>
-    <ClInclude Include="InvadersMain.h">
+    <ClInclude Include="Invaders\InvadersMain.h">
       <Filter>소스 파일\Invaders</Filter>
     </ClInclude>
   </ItemGroup>
