@@ -1,4 +1,5 @@
 #include "InvadersMain.h"
+#include "Invaders_Bullet.h"
 #include <iostream>
 
 InvadersMain::InvadersMain()
@@ -9,15 +10,18 @@ InvadersMain::InvadersMain()
 }
 InvadersMain::~InvadersMain()
 {
-	for (int32_t i = _bullets.Num() - 1; i >= 0; --i)
-	{
-		delete _bullets[i];
-	}
+	//MyArray<> _bullet_pool은 MyArray<>의 소멸자에서 원소와 배열을 메모리해제합니다
+	//MyArray<> _enemies은 MyArray<>의 소멸자에서 원소와 배열을 메모리해제합니다
 
-	for (int32_t i = _enemies.Num() - 1; i >= 0; --i)
-	{
-		delete _enemies[i];
-	}
+	//for (int32_t i = _bullet_pool.Num() - 1; i >= 0; --i)
+	//{
+	//	delete _bullets[i];
+	//}
+
+	//for (int32_t i = _enemies.Num() - 1; i >= 0; --i)
+	//{
+	//	delete _enemies[i];
+	//}
 }
 void InvadersMain::PostInit()
 {
@@ -46,14 +50,13 @@ void InvadersMain::PostInit()
 
 	//Init Bullet Pool
 	int32_t i_bullet_size = 20;
-	sf::RectangleShape* bullet = nullptr;
+	Invaders_Bullet* bullet = nullptr;
 	_bullet_pool.Reserve(i_bullet_size);
 	_bullets.Reserve(i_bullet_size);
 	for (int32_t i = 0; i < i_bullet_size; ++i)
 	{
-		bullet = new sf::RectangleShape();
-		bullet->setSize(_bullet_size);
-		bullet->setFillColor(_bullet_color);
+		bullet = new Invaders_Bullet();
+		bullet->PostInit(_bullet_size, _bullet_color, _bullet_speed);
 		_bullet_pool.Add(bullet);
 	}
 
@@ -90,7 +93,7 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		if(_player.getPosition().x < 1920 - _player_size)
+		if(_player.getPosition().x < _display_width - _player_size)
 			_player.move(_player_move_speed, 0);
 	}
 
@@ -103,25 +106,49 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 		if (_player_as_current >= _player_as)
 		{
 			//std::cout << "Shot" << std::endl;
-			sf::RectangleShape* bullet = WakeBullet();
-			bullet->setPosition(_player.getPosition() + _player_muzzle);
+			Invaders_Bullet* bullet = WakeBullet(false, _player.getPosition() + _player_muzzle);
 			_player_as_current = 0.f;
 		}
 	}
 
 	//Move Bullet And Collision, Pooling
-	sf::RectangleShape* bullet = nullptr;
+	Invaders_Bullet* bullet = nullptr;
 	for (int32_t i = _bullets.Num() - 1; i >= 0; --i)
 	{
 		//Move
 		bullet = _bullets[i];
-		bullet->move(sf::Vector2f(0.f, -(_delta_time * _bullet_speed)));
+		bullet->BulletMove(_delta_time);
 
 		//Pooling
-		if (bullet->getPosition().y <= 50)
+		if (bullet->GetPosition().y <= 50)
 		{
 			SleepBullet(bullet);
 			_bullets.RemoveAtSwap(i);
+			continue;
+		}
+
+		//Collision
+		if (bullet->IsEnemy() == true)
+		{
+
+		}
+		else
+		{
+			sf::RectangleShape* enemy = nullptr;
+			for (int32_t j = _enemies.Num() - 1; j >= 0; --j)
+			{
+				enemy = _enemies[j];
+				if (bullet->GetShape()->getGlobalBounds().intersects(enemy->getGlobalBounds()))
+				{
+					//Success
+					delete enemy;
+					_enemies.RemoveAtSwap(j);
+
+					_bullets.RemoveAtSwap(i);
+					SleepBullet(bullet);
+					break;
+				}
+			}
 		}
 	}
 }
@@ -139,30 +166,30 @@ void InvadersMain::LoopRender(sf::RenderWindow& window)
 		window.draw(*enemy);
 	}
 
-	for (const sf::RectangleShape* bullet : _bullets)
+	for (Invaders_Bullet* bullet : _bullets)
 	{
-		window.draw(*bullet);
+		bullet->Draw(window);
 	}
 }
 
-sf::RectangleShape* InvadersMain::WakeBullet()
+Invaders_Bullet* InvadersMain::WakeBullet(const bool b_is_enemy, const sf::Vector2f v_pos)
 {
-	sf::RectangleShape* bullet = nullptr;
+	Invaders_Bullet* bullet = nullptr;
 	if (_bullet_pool.Num() <= 0)
 	{
-		bullet = new sf::RectangleShape();
-		bullet->setSize(_bullet_size);
-		bullet->setFillColor(_bullet_color);
-		return bullet;
+		bullet = new Invaders_Bullet();
+		bullet->PostInit(_bullet_size, _bullet_color, _bullet_speed);
 	}
 	else
 	{
 		bullet = _bullet_pool.Pop();
 	}
+
+	bullet->WakeInit(b_is_enemy, v_pos);
 	_bullets.Add(bullet);
 	return bullet;
 }
-void InvadersMain::SleepBullet(sf::RectangleShape* bullet)
+void InvadersMain::SleepBullet(Invaders_Bullet* bullet)
 {
 	_bullet_pool.Add(bullet);
 }

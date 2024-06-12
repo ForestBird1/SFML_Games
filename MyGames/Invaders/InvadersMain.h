@@ -3,6 +3,8 @@
 #include "../BasedGame.h"
 #include "../Containers/MyArray.h"
 
+class Invaders_Bullet;
+
 class InvadersMain : public BasedGame
 {
 #pragma region Init
@@ -39,11 +41,12 @@ private:
 
 #pragma region Bullet
 public:
-	sf::RectangleShape* WakeBullet();
-	void SleepBullet(sf::RectangleShape* bullet);
+	Invaders_Bullet* WakeBullet(const bool b_is_enemy, const sf::Vector2f v_pos);
+	void SleepBullet(Invaders_Bullet* bullet);
 private:
-	MyArray<sf::RectangleShape*> _bullets;
-	MyArray<sf::RectangleShape*> _bullet_pool;
+	MyArray<Invaders_Bullet*> _bullets;
+
+	MyArray<Invaders_Bullet*> _bullet_pool;
 	sf::Vector2f _bullet_size = sf::Vector2f(4.f, 32.f);
 	sf::Color _bullet_color = sf::Color::Red;
 

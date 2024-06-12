@@ -177,6 +177,8 @@ public:
 
 	~MyArray()
 	{
+		Clear();
+
 		if (this->my_base)
 		{
 			delete[] this->my_base;
@@ -296,10 +298,9 @@ public:
 		this->my_base[index] = this->my_base[this->my_size];
 	}
 
-	//배열의 원소를 삭제하지않고 사이즈를 0으로 만듭니다
-	//캐퍼시티를 건들지 않고 초기화할 때 사용됩니다
+	//배열의 원소를 삭제하지않고
+	//사이즈를 0으로 만듭니다
 	//Clear()함수후에 원소룰 추가하면 기존에 있던 원소를 덮어씌웁니다
-	//언리얼엔진의 Reset()과 같은기능입니다
 	void Clear()
 	{
 		this->my_size = 0;

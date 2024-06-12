@@ -60,7 +60,7 @@ void BreakoutGameMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        if (_paddle.getPosition().x < 1920 - _paddle_size_x)
+        if (_paddle.getPosition().x < _display_width - _paddle_size_x)
             _paddle.move(_paddle_speed, 0);
     }
 
