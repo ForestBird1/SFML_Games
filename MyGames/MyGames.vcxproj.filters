@@ -25,16 +25,13 @@
     <Filter Include="소스 파일\Containers">
       <UniqueIdentifier>{671b0255-b19c-4c2c-8846-df0de994ff67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Invaders">
+      <UniqueIdentifier>{cab06dc4-1e8d-40f7-988c-9ab7be1a7319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="BreakoutGameMain.cpp">
-      <Filter>소스 파일\BreakoutGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>소스 파일\UI</Filter>
     </ClCompile>
     <ClCompile Include="MyGamesMain.cpp">
       <Filter>소스 파일</Filter>
@@ -42,14 +39,23 @@
     <ClCompile Include="BasedGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AStarTestMain.cpp">
+    <ClCompile Include="AStarTest\AStarTestMain.cpp">
       <Filter>소스 파일\AStarTest</Filter>
     </ClCompile>
-    <ClCompile Include="AStarTile.cpp">
+    <ClCompile Include="AStarTest\AStarTile.cpp">
       <Filter>소스 파일\AStarTest</Filter>
     </ClCompile>
-    <ClCompile Include="MyArray.cpp">
+    <ClCompile Include="BreakoutGame\BreakoutGameMain.cpp">
+      <Filter>소스 파일\BreakoutGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Containers\MyArray.cpp">
       <Filter>소스 파일\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Button\Button.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InvadersMain.cpp">
+      <Filter>소스 파일\Invaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,20 +65,23 @@
     <ClInclude Include="BasedGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MyArray.h">
-      <Filter>소스 파일\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="AStarTestMain.h">
+    <ClInclude Include="AStarTest\AStarTile.h">
       <Filter>소스 파일\AStarTest</Filter>
     </ClInclude>
-    <ClInclude Include="AStarTile.h">
+    <ClInclude Include="AStarTest\AStarTestMain.h">
       <Filter>소스 파일\AStarTest</Filter>
     </ClInclude>
-    <ClInclude Include="BreakoutGameMain.h">
+    <ClInclude Include="BreakoutGame\BreakoutGameMain.h">
       <Filter>소스 파일\BreakoutGame</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Containers\MyArray.h">
+      <Filter>소스 파일\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Button\Button.h">
       <Filter>소스 파일\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InvadersMain.h">
+      <Filter>소스 파일\Invaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

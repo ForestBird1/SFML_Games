@@ -3,11 +3,12 @@
 #include <SFML/Graphics.hpp>
 
 //class Button;
-#include "Button.h"
+#include "Button/Button.h"
 
 #include "BasedGame.h"
-#include "BreakoutGameMain.h"
-#include "AStarTestMain.h"
+#include "BreakoutGame/BreakoutGameMain.h"
+#include "AStarTest/AStarTestMain.h"
+#include "Invaders/InvadersMain.h"
 
 enum EGameType {
 	Title,
@@ -62,6 +63,7 @@ private:
 	BasedGame* _selected_game = nullptr;
 	BreakoutGameMain _breakoutgame_main;
 	AStarTestMain _astartest_main;
+	InvadersMain _invaders_main;
 #pragma endregion
 
 

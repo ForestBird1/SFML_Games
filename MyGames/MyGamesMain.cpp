@@ -26,7 +26,7 @@ void MyGamesMain::Main()
     _rendering_buttons.reserve(10);
 
     //Check Font File
-    std::string fontPath = "../x64/NotoSansKR.ttf";
+    std::string fontPath = "NotoSansKR.ttf";
     if (!std::filesystem::exists(fontPath)) {
         std::cerr << "Font file does not exist at path: " << fontPath << std::endl;
         return;

@@ -19,22 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AStarTestMain.cpp" />
-    <ClCompile Include="AStarTile.cpp" />
+    <ClCompile Include="AStarTest\AStarTestMain.cpp" />
+    <ClCompile Include="AStarTest\AStarTile.cpp" />
     <ClCompile Include="BasedGame.cpp" />
-    <ClCompile Include="BreakoutGameMain.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="BreakoutGame\BreakoutGameMain.cpp" />
+    <ClCompile Include="Button\Button.cpp" />
+    <ClCompile Include="Containers\MyArray.cpp" />
+    <ClCompile Include="InvadersMain.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyArray.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AStarTestMain.h" />
-    <ClInclude Include="AStarTile.h" />
+    <ClInclude Include="AStarTest\AStarTestMain.h" />
+    <ClInclude Include="AStarTest\AStarTile.h" />
     <ClInclude Include="BasedGame.h" />
-    <ClInclude Include="BreakoutGameMain.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="MyArray.h" />
+    <ClInclude Include="BreakoutGame\BreakoutGameMain.h" />
+    <ClInclude Include="Button\Button.h" />
+    <ClInclude Include="Containers\MyArray.h" />
+    <ClInclude Include="InvadersMain.h" />
     <ClInclude Include="MyGamesMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
