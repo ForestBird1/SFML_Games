@@ -28,7 +28,13 @@ private:
 #pragma endregion
 
 #pragma region Enemy
+private:
+	MyArray<sf::RectangleShape*> _enemies;
+	sf::Vector2f _enemy_size = sf::Vector2f(50.f, 50.f);
 
+	int32_t _enemy_row = 5;
+	int32_t _enemy_col = 11;
+	sf::Vector2f _enemy_init_position = sf::Vector2f(32.f, 100.f);
 #pragma endregion
 
 #pragma region Bullet

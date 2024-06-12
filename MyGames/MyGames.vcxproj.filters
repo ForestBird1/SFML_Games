@@ -57,6 +57,9 @@
     <ClCompile Include="Invaders\InvadersMain.cpp">
       <Filter>소스 파일\Invaders</Filter>
     </ClCompile>
+    <ClCompile Include="Invaders\Invaders_Bullet.cpp">
+      <Filter>소스 파일\Invaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGamesMain.h">
@@ -81,6 +84,9 @@
       <Filter>소스 파일\UI</Filter>
     </ClInclude>
     <ClInclude Include="Invaders\InvadersMain.h">
+      <Filter>소스 파일\Invaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Invaders\Invaders_Bullet.h">
       <Filter>소스 파일\Invaders</Filter>
     </ClInclude>
   </ItemGroup>

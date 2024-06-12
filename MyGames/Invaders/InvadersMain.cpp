@@ -13,12 +13,18 @@ InvadersMain::~InvadersMain()
 	{
 		delete _bullets[i];
 	}
+
+	for (int32_t i = _enemies.Num() - 1; i >= 0; --i)
+	{
+		delete _enemies[i];
+	}
 }
 void InvadersMain::PostInit()
 {
 	//Create Debug Tile
 	float tile_size = 32.f;
 	sf::RectangleShape based_tile(sf::Vector2f(tile_size, tile_size));
+	based_tile.setFillColor(sf::Color(128, 128, 128));
 	based_tile.setOutlineColor(sf::Color::Blue);
 	based_tile.setOutlineThickness(2.f);
 	for (int32_t i_row = 0, i_row_len = _display_height / tile_size; i_row < i_row_len; ++i_row)
@@ -49,6 +55,21 @@ void InvadersMain::PostInit()
 		bullet->setSize(_bullet_size);
 		bullet->setFillColor(_bullet_color);
 		_bullet_pool.Add(bullet);
+	}
+
+	//Create Enemies
+	sf::RectangleShape* enemy = nullptr;
+	_enemies.Reserve(_enemy_row * _enemy_col);
+	for (int32_t i_row = 0; i_row < _enemy_row; ++i_row)
+	{
+		for (int32_t i_col = 0; i_col < _enemy_col; ++i_col)
+		{
+			enemy = new sf::RectangleShape();
+			enemy->setSize(_enemy_size);
+			enemy->setPosition((_enemy_init_position.x + (64.f - _enemy_size.x) * i_col + _enemy_size.x * i_col),
+				(_enemy_init_position.y + (64.f - _enemy_size.y) * i_row + _enemy_size.y * i_row));
+			_enemies.Add(enemy);
+		}
 	}
 }
 void InvadersMain::GameInit()
@@ -112,6 +133,11 @@ void InvadersMain::LoopRender(sf::RenderWindow& window)
 	}
 
 	window.draw(_player);
+
+	for (const sf::RectangleShape* enemy : _enemies)
+	{
+		window.draw(*enemy);
+	}
 
 	for (const sf::RectangleShape* bullet : _bullets)
 	{
