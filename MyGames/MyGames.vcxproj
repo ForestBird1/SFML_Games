@@ -27,6 +27,7 @@
     <ClCompile Include="Containers\MyArray.cpp" />
     <ClCompile Include="Invaders\InvadersMain.cpp" />
     <ClCompile Include="Invaders\Invaders_Bullet.cpp" />
+    <ClCompile Include="Invaders\Invaders_Enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
   </ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="Containers\MyArray.h" />
     <ClInclude Include="Invaders\InvadersMain.h" />
     <ClInclude Include="Invaders\Invaders_Bullet.h" />
+    <ClInclude Include="Invaders\Invaders_Enemy.h" />
     <ClInclude Include="MyGamesMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

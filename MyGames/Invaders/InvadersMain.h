@@ -4,6 +4,7 @@
 #include "../Containers/MyArray.h"
 
 class Invaders_Bullet;
+class Invaders_Enemy;
 
 class InvadersMain : public BasedGame
 {
@@ -23,7 +24,7 @@ public:
 private:
 	sf::RectangleShape _player;
 	float _player_size = 64.f;
-	float _player_move_speed = 2.f;
+	float _player_move_speed = 500.f;
 	sf::Vector2f _player_muzzle = sf::Vector2f(0.f,0.f);
 	float _player_as = 1.f;
 	float _player_as_current = 0.f;
@@ -31,12 +32,16 @@ private:
 
 #pragma region Enemy
 private:
-	MyArray<sf::RectangleShape*> _enemies;
+	MyArray<Invaders_Enemy*> _enemies;
 	sf::Vector2f _enemy_size = sf::Vector2f(50.f, 50.f);
+	sf::Vector2f _enemy_muzzle = sf::Vector2f(0.f, 0.f);
 
 	int32_t _enemy_row = 5;
 	int32_t _enemy_col = 11;
 	sf::Vector2f _enemy_init_position = sf::Vector2f(32.f, 100.f);
+
+	float _enemy_as = 3.f;
+	float _enemy_as_current = 0.f;
 #pragma endregion
 
 #pragma region Bullet

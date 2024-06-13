@@ -1,5 +1,6 @@
 #include "InvadersMain.h"
 #include "Invaders_Bullet.h"
+#include "Invaders_Enemy.h"
 #include <iostream>
 
 InvadersMain::InvadersMain()
@@ -45,7 +46,7 @@ void InvadersMain::PostInit()
 	//Create Player
 	_player.setSize(sf::Vector2f(_player_size, _player_size));
 	_player.setFillColor(sf::Color::Green);
-	_player.setPosition((_display_width - _player_size) * 0.5f, _display_height - _player_size - 32);
+	_player.setPosition((_display_width - _player_size) * 0.5f, _display_height - _player_size - 64);
 	_player_muzzle = sf::Vector2f(_player_size * 0.5f, -_bullet_size.y);
 
 	//Init Bullet Pool
@@ -61,23 +62,25 @@ void InvadersMain::PostInit()
 	}
 
 	//Create Enemies
-	sf::RectangleShape* enemy = nullptr;
+	Invaders_Enemy* enemy = nullptr;
 	_enemies.Reserve(_enemy_row * _enemy_col);
 	for (int32_t i_row = 0; i_row < _enemy_row; ++i_row)
 	{
 		for (int32_t i_col = 0; i_col < _enemy_col; ++i_col)
 		{
-			enemy = new sf::RectangleShape();
-			enemy->setSize(_enemy_size);
-			enemy->setPosition((_enemy_init_position.x + (64.f - _enemy_size.x) * i_col + _enemy_size.x * i_col),
-				(_enemy_init_position.y + (64.f - _enemy_size.y) * i_row + _enemy_size.y * i_row));
+			enemy = new Invaders_Enemy();
+			enemy->PostInit(_enemy_size, sf::Vector2f((_enemy_init_position.x + (64.f - _enemy_size.x) * i_col + _enemy_size.x * i_col),
+				(_enemy_init_position.y + (64.f - _enemy_size.y) * i_row + _enemy_size.y * i_row)));
+			
 			_enemies.Add(enemy);
 		}
 	}
+	_enemy_muzzle = sf::Vector2f(_enemy_size.x * 0.5f, _enemy_size.y);
 }
 void InvadersMain::GameInit()
 {
 	_player_as_current = _player_as;
+	_enemy_as_current = 0.f;
 }
 void InvadersMain::LoopEvent(sf::Event& event, sf::RenderWindow& window)
 {
@@ -89,16 +92,17 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		if(_player.getPosition().x > 0)
-			_player.move(-_player_move_speed, 0);
+			_player.move(-_player_move_speed * _delta_time, 0);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		if(_player.getPosition().x < _display_width - _player_size)
-			_player.move(_player_move_speed, 0);
+			_player.move(_player_move_speed * _delta_time, 0);
 	}
 
-	//Calc Player AttackSpeed
+	//Calc Player,Enemy AttackSpeed
 	_player_as_current += _delta_time;
+	_enemy_as_current += _delta_time;
 
 	//Player Shoot
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -109,6 +113,17 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 			Invaders_Bullet* bullet = WakeBullet(false, _player.getPosition() + _player_muzzle);
 			_player_as_current = 0.f;
 		}
+	}
+	//Enemy Shoow
+	if (_enemy_as_current >= _enemy_as)
+	{
+		auto it = _enemies.begin();
+		int random = rand() % _enemies.Num();
+		//std::cout << random << std::endl;
+
+		Invaders_Bullet* bullet = WakeBullet(true, _enemies[random]->GetShape()->getPosition() + _enemy_muzzle);
+
+		_enemy_as_current = 0.f;
 	}
 
 	//Move Bullet And Collision, Pooling
@@ -130,15 +145,21 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 		//Collision
 		if (bullet->IsEnemy() == true)
 		{
-
+			if (bullet->GetShape()->getGlobalBounds().intersects(_player.getGlobalBounds()))
+			{
+				//Success
+				_bullets.RemoveAtSwap(i);
+				SleepBullet(bullet);
+				break;
+			}
 		}
 		else
 		{
-			sf::RectangleShape* enemy = nullptr;
+			Invaders_Enemy* enemy = nullptr;
 			for (int32_t j = _enemies.Num() - 1; j >= 0; --j)
 			{
 				enemy = _enemies[j];
-				if (bullet->GetShape()->getGlobalBounds().intersects(enemy->getGlobalBounds()))
+				if (bullet->GetShape()->getGlobalBounds().intersects(enemy->GetShape()->getGlobalBounds()))
 				{
 					//Success
 					delete enemy;
@@ -156,14 +177,14 @@ void InvadersMain::LoopRender(sf::RenderWindow& window)
 {
 	for (const auto& debug_tile : _debug_bg_grid)
 	{
-		window.draw(debug_tile);
+		//window.draw(debug_tile);
 	}
 
 	window.draw(_player);
 
-	for (const sf::RectangleShape* enemy : _enemies)
+	for (Invaders_Enemy* enemy : _enemies)
 	{
-		window.draw(*enemy);
+		window.draw(*enemy->GetShape());
 	}
 
 	for (Invaders_Bullet* bullet : _bullets)

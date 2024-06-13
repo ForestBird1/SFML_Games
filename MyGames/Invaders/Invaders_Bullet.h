@@ -12,6 +12,10 @@ public:
 	void WakeInit(const bool b_is_enemy, const sf::Vector2f v_pos);
 
 	void Draw(sf::RenderWindow& window);
+
+	const sf::Vector2f& GetPosition() const;
+	const bool IsEnemy() const;
+	sf::RectangleShape* GetShape();
 private:
 	sf::RectangleShape* _shape = nullptr;
 	float _bullet_speed = 0.f;
@@ -21,10 +25,6 @@ private:
 #pragma region Bullet
 public:
 	void BulletMove(const float f_delta_time);
-
-	const sf::Vector2f& GetPosition() const;
-	const bool IsEnemy() const;
-	sf::RectangleShape* GetShape();
 #pragma endregion
 
 };
