@@ -16,4 +16,9 @@ void Invaders_Enemy::PostInit(const sf::Vector2f& v_size, const sf::Vector2f v_p
 	_shape->setPosition(v_pos);
 }
 
+void Invaders_Enemy::Move(const sf::Vector2f& v_velocity)
+{
+	_shape->move(v_velocity);
+}
+
 sf::RectangleShape* Invaders_Enemy::GetShape() { return _shape; }

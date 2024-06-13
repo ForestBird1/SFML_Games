@@ -16,5 +16,11 @@ private:
 	sf::RectangleShape* _shape = nullptr;
 #pragma endregion
 
+#pragma region Enemy
+public:
+	void Move(const sf::Vector2f& v_velocity);
+#pragma endregion
+
+
 };
 

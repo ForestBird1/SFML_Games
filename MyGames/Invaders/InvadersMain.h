@@ -33,15 +33,31 @@ private:
 #pragma region Enemy
 private:
 	MyArray<Invaders_Enemy*> _enemies;
-	sf::Vector2f _enemy_size = sf::Vector2f(50.f, 50.f);
+	sf::Vector2f _enemy_size = sf::Vector2f(40.f, 40.f);
 	sf::Vector2f _enemy_muzzle = sf::Vector2f(0.f, 0.f);
 
 	int32_t _enemy_row = 5;
-	int32_t _enemy_col = 11;
-	sf::Vector2f _enemy_init_position = sf::Vector2f(32.f, 100.f);
+	int32_t _enemy_col = 9;
+	sf::Vector2f _enemy_init_position = sf::Vector2f(-64.f, 100.f);
 
 	float _enemy_as = 3.f;
 	float _enemy_as_current = 0.f;
+
+	float _enemy_move_timing = 0.1f;
+	float _enemy_move_timing_current = 0.f;
+
+	//160의 약수여야합니다
+	float _enemy_move_speed_x = 20.f;
+
+	float _enemy_move_speed_y = 64.f;
+
+	//160만큼 이동했으면 반대로 이동합니다
+	float _enemy_total_move_x_distance = 0.f;
+
+	//_enemy_max_y 만큼 이동했으면 좌우만 움직입니다
+	float _enemy_total_move_y_distance = 0.f;
+
+	float _enemy_max_y = 420.f;
 #pragma endregion
 
 #pragma region Bullet

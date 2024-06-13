@@ -64,6 +64,7 @@ void InvadersMain::PostInit()
 	//Create Enemies
 	Invaders_Enemy* enemy = nullptr;
 	_enemies.Reserve(_enemy_row * _enemy_col);
+	_enemy_init_position = sf::Vector2f(_enemy_init_position.x + (_display_width - (_enemy_col * 64.f))*0.5f, _enemy_init_position.y);
 	for (int32_t i_row = 0; i_row < _enemy_row; ++i_row)
 	{
 		for (int32_t i_col = 0; i_col < _enemy_col; ++i_col)
@@ -172,12 +173,45 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 			}
 		}
 	}
+
+	//Move Enemy
+	_enemy_move_timing_current += _delta_time;
+	if (_enemy_move_timing_current >= _enemy_move_timing)
+	{
+		sf::Vector2f v_velocity = sf::Vector2f();
+		if (_enemy_total_move_x_distance >= 160.f)
+		{
+			_enemy_move_speed_x *= -1.f;
+			_enemy_total_move_x_distance = 0.f;
+
+			if (_enemy_total_move_y_distance < _enemy_max_y)
+			{
+				v_velocity = sf::Vector2f(0.f, _enemy_move_speed_y);
+				_enemy_total_move_y_distance += _enemy_move_speed_y;
+			}
+			
+		}
+		else
+		{
+			_enemy_total_move_x_distance += (abs)(_enemy_move_speed_x);
+			v_velocity = sf::Vector2f(_enemy_move_speed_x, 0.f);
+		}
+		
+		for (Invaders_Enemy* enemy : _enemies)
+		{
+			enemy->Move(v_velocity);
+		}
+
+		//std::cout << _enemies[0]->GetShape()->getPosition().y << std::endl;
+
+		_enemy_move_timing_current = 0.f;
+	}
 }
 void InvadersMain::LoopRender(sf::RenderWindow& window)
 {
 	for (const auto& debug_tile : _debug_bg_grid)
 	{
-		//window.draw(debug_tile);
+		window.draw(debug_tile);
 	}
 
 	window.draw(_player);
