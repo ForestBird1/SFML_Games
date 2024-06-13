@@ -37,18 +37,17 @@ void BasedGame::Loop()
         //이벤트처리 루프
         while (window.pollEvent(event))
         {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ||
-                event.type == sf::Event::Closed)
-            {
-                window.close();
-                _main->ClosedGameWindow();
-            }
-
-            //if ()
+            //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ||
+            //    event.type == sf::Event::Closed)
             //{
             //    window.close();
             //    _main->ClosedGameWindow();
             //}
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                _main->ClosedGameWindow();
+            }
 
             LoopEvent(event,window);
         }
@@ -62,7 +61,7 @@ void BasedGame::Loop()
         LoopGame(event, window);
 
         //렌더링루프
-        window.clear(sf::Color(128, 128, 128));
+        window.clear(_display_color);
         LoopRender(window);
         window.draw(_frame_text);
         window.display();

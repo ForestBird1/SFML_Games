@@ -26,6 +26,7 @@ protected:
 	unsigned int _display_width = 1920;
 	unsigned int _display_height = 1080;
 	std::string _display_name = "SFML Game";
+	sf::Color _display_color = sf::Color(128, 128, 128);
 
 	float _delta_time = 0.f;
 private:

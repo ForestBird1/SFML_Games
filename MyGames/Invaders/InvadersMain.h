@@ -43,11 +43,8 @@ private:
 	float _enemy_as = 3.f;
 	float _enemy_as_current = 0.f;
 
-	float _enemy_move_timing = 0.1f;
-	float _enemy_move_timing_current = 0.f;
-
 	//160의 약수여야합니다
-	float _enemy_move_speed_x = 20.f;
+	float _enemy_move_speed_x = 60.f;
 
 	float _enemy_move_speed_y = 64.f;
 
@@ -71,7 +68,7 @@ private:
 	sf::Vector2f _bullet_size = sf::Vector2f(4.f, 32.f);
 	sf::Color _bullet_color = sf::Color::Red;
 
-	float _bullet_speed = 700.f;
+	float _bullet_speed = 1000.f;
 #pragma endregion
 
 
