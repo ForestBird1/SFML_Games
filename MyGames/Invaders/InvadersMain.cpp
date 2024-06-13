@@ -107,16 +107,14 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 	_enemy_as_current += _delta_time;
 
 	//Player Shoot
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (_player_as_current >= _player_as)
 	{
-		if (_player_as_current >= _player_as)
-		{
-			//std::cout << "Shot" << std::endl;
-			Invaders_Bullet* bullet = WakeBullet(false, _player.getPosition() + _player_muzzle);
-			_player_as_current = 0.f;
-		}
+		//std::cout << "Shot" << std::endl;
+		Invaders_Bullet* bullet = WakeBullet(false, _player.getPosition() + _player_muzzle);
+		_player_as_current = 0.f;
 	}
-	//Enemy Shoow
+
+	//Enemy Shoot
 	if (_enemy_as_current >= _enemy_as)
 	{
 		auto it = _enemies.begin();
@@ -164,6 +162,11 @@ void InvadersMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 				if (bullet->GetShape()->getGlobalBounds().intersects(enemy->GetShape()->getGlobalBounds()))
 				{
 					//Success
+					_enemy_as *= 0.9f;
+					if (_enemy_as < 0.5f)
+						_enemy_as = 0.5f;
+					//std::cout << _enemy_as << std::endl;
+
 					delete enemy;
 					_enemies.RemoveAtSwap(j);
 
