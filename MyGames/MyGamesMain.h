@@ -9,12 +9,14 @@
 #include "BreakoutGame/BreakoutGameMain.h"
 #include "AStarTest/AStarTestMain.h"
 #include "Invaders/InvadersMain.h"
+#include "Snake/SnakeMain.h"
 
 enum EGameType {
 	Title,
 	Breakout_Game,
 	AStarTest,
 	Invaders,
+	Snake,
 };
 
 
@@ -58,6 +60,7 @@ private:
 	BreakoutGameMain _breakoutgame_main;
 	AStarTestMain _astartest_main;
 	InvadersMain _invaders_main;
+	SnakeMain _snake_main;
 #pragma endregion
 
 
@@ -70,6 +73,7 @@ private:
 	Button _btn_do_breakout_game;
 	Button _btn_do_astar_test;
 	Button _btn_do_invaders;
+	Button _btn_do_snake;
 #pragma endregion
 
 

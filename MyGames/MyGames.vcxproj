@@ -30,6 +30,7 @@
     <ClCompile Include="Invaders\Invaders_Enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
+    <ClCompile Include="Snake\SnakeMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStarTest\AStarTestMain.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Invaders\Invaders_Bullet.h" />
     <ClInclude Include="Invaders\Invaders_Enemy.h" />
     <ClInclude Include="MyGamesMain.h" />
+    <ClInclude Include="Snake\SnakeMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

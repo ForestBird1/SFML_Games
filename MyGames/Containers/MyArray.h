@@ -1,7 +1,7 @@
 #pragma once
 
-
 #include <list>
+#include <iostream>
 
 /*
 * 언리얼엔진의 TArray를 참고 했습니다
@@ -177,6 +177,7 @@ public:
 
 	~MyArray()
 	{
+		//std::cout << "MyArray Destructor" << std::endl;
 		Clear();
 
 		if (this->my_base)

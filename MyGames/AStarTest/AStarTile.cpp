@@ -59,6 +59,8 @@ AStarTile::AStarTile()
 AStarTile::~AStarTile()
 {
 	//std::cout << "Destruct: Index: " << _index << std::endl;
+
+	//std::cout << "AStarTile Destructor" << std::endl;
 }
 
 

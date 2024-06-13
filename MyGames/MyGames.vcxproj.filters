@@ -28,6 +28,9 @@
     <Filter Include="소스 파일\Invaders">
       <UniqueIdentifier>{cab06dc4-1e8d-40f7-988c-9ab7be1a7319}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Snake">
+      <UniqueIdentifier>{07f07a89-0bfc-43e3-8778-69bb6e1508b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,6 +66,9 @@
     <ClCompile Include="Invaders\Invaders_Enemy.cpp">
       <Filter>소스 파일\Invaders</Filter>
     </ClCompile>
+    <ClCompile Include="Snake\SnakeMain.cpp">
+      <Filter>소스 파일\Snake</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGamesMain.h">
@@ -94,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Invaders\Invaders_Enemy.h">
       <Filter>소스 파일\Invaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake\SnakeMain.h">
+      <Filter>소스 파일\Snake</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

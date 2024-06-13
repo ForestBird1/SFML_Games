@@ -44,7 +44,7 @@ void MyGamesMain::Main()
     _btn_do_breakout_game.SetColor_Shape(sf::Color::Blue);
     _btn_do_breakout_game.SetFont(_font);
     _btn_do_breakout_game.SetText("Breakout Game");
-    _btn_do_breakout_game.setPosition(300, 275);
+    _btn_do_breakout_game.setPosition(100, 275);
     _btn_do_breakout_game.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Breakout_Game));
     _rendering_buttons.push_back(_btn_do_breakout_game);
 
@@ -53,7 +53,7 @@ void MyGamesMain::Main()
     _btn_do_astar_test.SetColor_Shape(sf::Color::Blue);
     _btn_do_astar_test.SetFont(_font);
     _btn_do_astar_test.SetText("AStarTest");
-    _btn_do_astar_test.setPosition(600, 275);
+    _btn_do_astar_test.setPosition(400, 275);
     _btn_do_astar_test.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::AStarTest));
     _rendering_buttons.push_back(_btn_do_astar_test);
 
@@ -61,14 +61,23 @@ void MyGamesMain::Main()
     _btn_do_invaders.SetColor_Shape(sf::Color::Blue);
     _btn_do_invaders.SetFont(_font);
     _btn_do_invaders.SetText("Invaders");
-    _btn_do_invaders.setPosition(900, 275);
+    _btn_do_invaders.setPosition(700, 275);
     _btn_do_invaders.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Invaders));
     _rendering_buttons.push_back(_btn_do_invaders);
+
+    _btn_do_snake.SetSize(200, 50);
+    _btn_do_snake.SetColor_Shape(sf::Color::Blue);
+    _btn_do_snake.SetFont(_font);
+    _btn_do_snake.SetText("Snake");
+    _btn_do_snake.setPosition(1000, 275);
+    _btn_do_snake.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Snake));
+    _rendering_buttons.push_back(_btn_do_snake);
     
     //Init GameClass
     _astartest_main.PostInit(this);
     _breakoutgame_main.PostInit();
     _invaders_main.PostInit();
+    _snake_main.PostInit(this);
 
     
     Loop();
@@ -153,6 +162,9 @@ void MyGamesMain::OnClickedGame(const EGameType e_game_type)
         break;
     case Invaders:
         _selected_game = &_invaders_main;
+        break;
+    case Snake:
+        _selected_game = &_snake_main;
         break;
     default:
         break;

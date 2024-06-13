@@ -71,12 +71,6 @@ private:
 	float _bullet_speed = 1000.f;
 #pragma endregion
 
-
-
-
-
-
-
 #pragma region Debug
 private:
 	MyArray<sf::RectangleShape> _debug_bg_grid;
