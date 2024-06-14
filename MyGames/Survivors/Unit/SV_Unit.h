@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Survivors_Unit
+class SV_Unit
 {
 #pragma region Init
 public:

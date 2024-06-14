@@ -1,5 +1,5 @@
 #include "SurvivorsMain.h"
-#include "Unit/Survivors_Hero.h"
+#include "Unit/SV_Hero.h"
 
 SurvivorsMain::SurvivorsMain()
 {
@@ -17,7 +17,7 @@ void SurvivorsMain::PostInit(class MyGamesMain* main)
 		system("Pause");
 	}
 
-	_hero = new Survivors_Hero();
+	_hero = new SV_Hero();
 	_hero->PostInit(this);
 }
 void SurvivorsMain::GameInit()

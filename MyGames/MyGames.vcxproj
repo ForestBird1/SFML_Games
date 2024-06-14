@@ -30,9 +30,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
     <ClCompile Include="Snake\SnakeMain.cpp" />
+    <ClCompile Include="Survivors\ReadOnly\SV_Struct.cpp" />
     <ClCompile Include="Survivors\SurvivorsMain.cpp" />
-    <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp" />
-    <ClCompile Include="Survivors\Unit\Survivors_Unit.cpp" />
+    <ClCompile Include="Survivors\Unit\SV_Hero.cpp" />
+    <ClCompile Include="Survivors\Unit\SV_Unit.cpp" />
+    <ClCompile Include="SV_Projectile.cpp" />
     <ClCompile Include="UI\Button\Button.cpp" />
     <ClCompile Include="UI\ProgressBar\ProgressBar.cpp" />
     <ClCompile Include="UI\UI.cpp" />
@@ -48,9 +50,11 @@
     <ClInclude Include="Invaders\Invaders_Enemy.h" />
     <ClInclude Include="MyGamesMain.h" />
     <ClInclude Include="Snake\SnakeMain.h" />
+    <ClInclude Include="Survivors\ReadOnly\SV_Struct.h" />
     <ClInclude Include="Survivors\SurvivorsMain.h" />
-    <ClInclude Include="Survivors\Unit\Survivors_Hero.h" />
-    <ClInclude Include="Survivors\Unit\Survivors_Unit.h" />
+    <ClInclude Include="Survivors\Unit\SV_Hero.h" />
+    <ClInclude Include="Survivors\Unit\SV_Unit.h" />
+    <ClInclude Include="SV_Projectile.h" />
     <ClInclude Include="UI\Button\Button.h" />
     <ClInclude Include="UI\ProgressBar\ProgressBar.h" />
     <ClInclude Include="UI\UI.h" />

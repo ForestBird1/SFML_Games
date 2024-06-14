@@ -1,16 +1,16 @@
-#include "Survivors_Hero.h"
+#include "SV_Hero.h"
 #include "../SurvivorsMain.h"
 
 #include "../../UI/ProgressBar/ProgressBar.h"
 
 #include <iostream>
 
-Survivors_Hero::Survivors_Hero()
+SV_Hero::SV_Hero()
 {
 
 }
 
-void Survivors_Hero::PostInit(SurvivorsMain* main)
+void SV_Hero::PostInit(SurvivorsMain* main)
 {
     _sprite = new sf::Sprite();
     _sprite->setTexture(main->GetUnitTexture());
@@ -19,7 +19,7 @@ void Survivors_Hero::PostInit(SurvivorsMain* main)
 
     _hp_bar = new ProgressBar(64.f, 4.f, sf::Color::Black, sf::Color::Red);
 }
-void Survivors_Hero::Tick(float DeltaTime, sf::Event& event)
+void SV_Hero::Tick(float DeltaTime, sf::Event& event)
 {
 	__super::Tick(DeltaTime, event);
 
@@ -28,7 +28,7 @@ void Survivors_Hero::Tick(float DeltaTime, sf::Event& event)
     TickUpdateUI();
 }
 
-void Survivors_Hero::DoMove(sf::Event& event, const float f_delta_time)
+void SV_Hero::DoMove(sf::Event& event, const float f_delta_time)
 {
     if (_sprite == nullptr) return;
 
@@ -63,7 +63,7 @@ void Survivors_Hero::DoMove(sf::Event& event, const float f_delta_time)
     _sprite->move(v_velocity);
 }
 
-void Survivors_Hero::TickUpdateUI()
+void SV_Hero::TickUpdateUI()
 {
     if (_hp_bar == nullptr) return;
     if (_sprite == nullptr) return;
@@ -73,7 +73,7 @@ void Survivors_Hero::TickUpdateUI()
     //_hp_bar->SetPosition(_sprite->getPosition());
 }
 
-void Survivors_Hero::LoopRender(sf::RenderWindow& window)
+void SV_Hero::LoopRender(sf::RenderWindow& window)
 {
     if (_sprite == nullptr) return;
     if (_hp_bar == nullptr) return;
@@ -82,9 +82,9 @@ void Survivors_Hero::LoopRender(sf::RenderWindow& window)
     _hp_bar->Draw(window);
 }
 
-sf::Sprite* Survivors_Hero::GetSprite() { return _sprite; }
+sf::Sprite* SV_Hero::GetSprite() { return _sprite; }
 
-Survivors_Hero::~Survivors_Hero()
+SV_Hero::~SV_Hero()
 {
     delete _sprite;
     delete _hp_bar;

@@ -43,6 +43,12 @@
     <Filter Include="소스 파일\UI\ProgressBar">
       <UniqueIdentifier>{9bd78aad-d954-4f2f-bbe7-5b88ee52f450}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Survivors\ReadOnly">
+      <UniqueIdentifier>{22a19583-363e-423d-896c-ddc6d47d7bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Survivors\Projectile">
+      <UniqueIdentifier>{b2f118fc-5f12-411b-bfb3-75eae0587e1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,10 +87,10 @@
     <ClCompile Include="Survivors\SurvivorsMain.cpp">
       <Filter>소스 파일\Survivors</Filter>
     </ClCompile>
-    <ClCompile Include="Survivors\Unit\Survivors_Unit.cpp">
+    <ClCompile Include="Survivors\Unit\SV_Unit.cpp">
       <Filter>소스 파일\Survivors\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp">
+    <ClCompile Include="Survivors\Unit\SV_Hero.cpp">
       <Filter>소스 파일\Survivors\Unit</Filter>
     </ClCompile>
     <ClCompile Include="UI\ProgressBar\ProgressBar.cpp">
@@ -95,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="UI\UI.cpp">
       <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Survivors\ReadOnly\SV_Struct.cpp">
+      <Filter>소스 파일\Survivors\ReadOnly</Filter>
+    </ClCompile>
+    <ClCompile Include="SV_Projectile.cpp">
+      <Filter>소스 파일\Survivors\Projectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,10 +143,10 @@
     <ClInclude Include="Survivors\SurvivorsMain.h">
       <Filter>소스 파일\Survivors</Filter>
     </ClInclude>
-    <ClInclude Include="Survivors\Unit\Survivors_Unit.h">
+    <ClInclude Include="Survivors\Unit\SV_Unit.h">
       <Filter>소스 파일\Survivors\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Survivors\Unit\Survivors_Hero.h">
+    <ClInclude Include="Survivors\Unit\SV_Hero.h">
       <Filter>소스 파일\Survivors\Unit</Filter>
     </ClInclude>
     <ClInclude Include="UI\Button\Button.h">
@@ -145,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="UI\UI.h">
       <Filter>소스 파일\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Survivors\ReadOnly\SV_Struct.h">
+      <Filter>소스 파일\Survivors\ReadOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="SV_Projectile.h">
+      <Filter>소스 파일\Survivors\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

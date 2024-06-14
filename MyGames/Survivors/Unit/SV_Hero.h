@@ -1,6 +1,16 @@
 #pragma once
-#include "Survivors_Unit.h"
-class Survivors_Hero : public Survivors_Unit
+#include "SV_Unit.h"
+
+struct FHeroStat
+{
+public:
+	int32_t hp = 0;
+	int32_t hp_max = 0;
+
+	int32_t dmg = 0;
+};
+
+class SV_Hero : public SV_Unit
 {
 
 #pragma region Debug
@@ -10,8 +20,8 @@ public:
 
 #pragma region Init
 public:
-	Survivors_Hero();
-	~Survivors_Hero();
+	SV_Hero();
+	~SV_Hero();
 
 	void PostInit(class SurvivorsMain* main);
 
@@ -20,14 +30,11 @@ public:
 	sf::Sprite* GetSprite();
 #pragma endregion
 
-#pragma region Render
-public:
-	void LoopRender(sf::RenderWindow& window);
+#pragma region Stat
 private:
-	sf::Sprite* _sprite = nullptr;
-
-	int32_t _hero_size = 64;
+	FHeroStat _hero_stat;
 #pragma endregion
+
 
 #pragma region Move
 private:
@@ -43,6 +50,14 @@ private:
 	class ProgressBar* _hp_bar;
 #pragma endregion
 
+#pragma region Render
+public:
+	void LoopRender(sf::RenderWindow& window);
+private:
+	sf::Sprite* _sprite = nullptr;
+
+	int32_t _hero_size = 64;
+#pragma endregion
 
 };
 

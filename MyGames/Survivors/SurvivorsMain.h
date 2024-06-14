@@ -1,7 +1,7 @@
 #pragma once
 #include "../BasedGame.h"
 
-class Survivors_Hero;
+class SV_Hero;
 
 class SurvivorsMain : public BasedGame
 {
@@ -27,7 +27,7 @@ private:
 
 #pragma region Player
 private:
-	Survivors_Hero* _hero = nullptr;
+	SV_Hero* _hero = nullptr;
 #pragma endregion
 
 };
