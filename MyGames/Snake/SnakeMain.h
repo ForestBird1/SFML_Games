@@ -48,6 +48,7 @@ private:
 	sf::CircleShape _eyes;
 
 	ESnakeDirection _snake_direction = ESnakeDirection::Right;
+	ESnakeDirection _snake_direction_buffer = ESnakeDirection::Right;
 
 	float _snake_move_timing = 0.3f;
 	float _snake_move_timing_current = 0.f;

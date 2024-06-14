@@ -65,7 +65,31 @@ void SnakeMain::PostInit(MyGamesMain* game_main)
 }
 void SnakeMain::GameInit()
 {
+	_is_gameover = false;
 	_snake_move_timing_current = 0.f;
+	_snake_direction = ESnakeDirection::Right;
+
+	while (_snake.empty() == false)
+	{
+		const SnakeTail& tail_last = _snake.back();
+		SetTileColor(tail_last.row, tail_last.col, false);
+		_snake.pop_back();
+	}
+
+	_snake.clear();
+	for (int32_t i = 0; i < 3; ++i)
+	{
+		SnakeTail tail;
+		tail.col = i;
+		_snake.push_front(tail);
+		SetTileColor(0, i, true);
+	}
+
+
+	const SnakeTail& tail = _snake.front();
+	SetPositionEyes(tail.row, tail.col);
+
+	SetRandomPositionFood();
 }
 void SnakeMain::LoopEvent(sf::Event& event, sf::RenderWindow& window)
 {
@@ -73,31 +97,76 @@ void SnakeMain::LoopEvent(sf::Event& event, sf::RenderWindow& window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		if(_snake_direction != ESnakeDirection::Down)
-			_snake_direction = ESnakeDirection::Up;
+		_snake_direction_buffer = ESnakeDirection::Up;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		if (_snake_direction != ESnakeDirection::Up)
-			_snake_direction = ESnakeDirection::Down;
+		_snake_direction_buffer = ESnakeDirection::Down;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		if (_snake_direction != ESnakeDirection::Left)
-			_snake_direction = ESnakeDirection::Right;
+		_snake_direction_buffer = ESnakeDirection::Right;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		if (_snake_direction != ESnakeDirection::Right)
-			_snake_direction = ESnakeDirection::Left;
+		_snake_direction_buffer = ESnakeDirection::Left;
 	}
 }
+
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+//	{
+//		if(_snake_direction != ESnakeDirection::Down)
+//			_snake_direction = ESnakeDirection::Up;
+//	}
+//	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+//	{
+//		if (_snake_direction != ESnakeDirection::Up)
+//			_snake_direction = ESnakeDirection::Down;
+//	}
+//	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+//	{
+//		if (_snake_direction != ESnakeDirection::Left)
+//			_snake_direction = ESnakeDirection::Right;
+//	}
+//	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+//	{
+//		if (_snake_direction != ESnakeDirection::Right)
+//			_snake_direction = ESnakeDirection::Left;
+//	}
+//}
 void SnakeMain::LoopGame(sf::Event& event, sf::RenderWindow& window)
 {
 	_snake_move_timing_current += _delta_time;
 
 	if (_snake_move_timing_current >= _snake_move_timing)
 	{
+		//_snake_direction_buffer로 이동방향 결정하기
+		if (_snake_direction_buffer != _snake_direction)
+		{
+			switch (_snake_direction_buffer)
+			{
+			case Up:
+				if (_snake_direction != ESnakeDirection::Down)
+					_snake_direction = ESnakeDirection::Up;
+				break;
+			case Down:
+				if (_snake_direction != ESnakeDirection::Up)
+					_snake_direction = ESnakeDirection::Down;
+				break;
+			case Right:
+				if (_snake_direction != ESnakeDirection::Left)
+					_snake_direction = ESnakeDirection::Right;
+				break;
+			case Left:
+				if (_snake_direction != ESnakeDirection::Right)
+					_snake_direction = ESnakeDirection::Left;
+				break;
+			default:
+				break;
+			}
+
+		}
+
 		int32_t i_d_row = 0;
 		int32_t i_d_col = 0;
 		switch (_snake_direction)
@@ -143,6 +212,8 @@ void SnakeMain::LoopRender(sf::RenderWindow& window)
 
 void SnakeMain::SnakeMove(const int32_t i_row, const int32_t i_col)
 {
+	
+
 	//벽에 부딪힌지 체크
 	if (i_row < 0 || i_row >_rows)
 	{
@@ -194,6 +265,7 @@ void SnakeMain::SnakeMove(const int32_t i_row, const int32_t i_col)
 	const SnakeTail& tail_face = _snake.front();
 	SetPositionEyes(tail_face.row, tail_face.col);
 
+	
 }
 void SnakeMain::SetPositionEyes(const int32_t i_row, const int32_t i_col)
 {
