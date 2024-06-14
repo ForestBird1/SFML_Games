@@ -29,12 +29,14 @@ void MyGamesMain::Main()
     std::string fontPath = "NotoSansKR.ttf";
     if (!std::filesystem::exists(fontPath)) {
         std::cerr << "Font file does not exist at path: " << fontPath << std::endl;
+        system("Pause");
         return;
     }
 
     //Load Font File
     if (!_font.loadFromFile(fontPath)) { // 적절한 폰트 파일 경로 사용
         std::cerr << "Failed to load font!" << std::endl;
+        system("Pause");
         return;
     }
 
@@ -72,12 +74,21 @@ void MyGamesMain::Main()
     _btn_do_snake.setPosition(1000, 275);
     _btn_do_snake.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Snake));
     _rendering_buttons.push_back(_btn_do_snake);
+
+    _btn_do_survivors.SetSize(200, 50);
+    _btn_do_survivors.SetColor_Shape(sf::Color::Blue);
+    _btn_do_survivors.SetFont(_font);
+    _btn_do_survivors.SetText("Survivors");
+    _btn_do_survivors.setPosition(100, 400);
+    _btn_do_survivors.setCallback(std::bind(&MyGamesMain::OnClickedGame, this, EGameType::Survivors));
+    _rendering_buttons.push_back(_btn_do_survivors);
     
     //Init GameClass
     _astartest_main.PostInit(this);
     _breakoutgame_main.PostInit();
     _invaders_main.PostInit();
     _snake_main.PostInit(this);
+    _survivors_main.PostInit(this);
 
     
     Loop();
@@ -165,6 +176,9 @@ void MyGamesMain::OnClickedGame(const EGameType e_game_type)
         break;
     case Snake:
         _selected_game = &_snake_main;
+        break;
+    case Survivors:
+        _selected_game = &_survivors_main;
         break;
     default:
         break;

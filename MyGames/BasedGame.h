@@ -11,13 +11,13 @@ public:
 	~BasedGame();
 
 	virtual void GameInit();
-	//GameInit()안에 Loop를 호출해도 되지만
-	//자식게임에서 __super()를 일일히 호출해야하므로 MyGamesMain.cpp에서 명시적으로 호출합니다
-	void DoLoop(MyGamesMain* main);
-
 	virtual void LoopEvent(sf::Event& event, sf::RenderWindow& window);
 	virtual void LoopGame(sf::Event& event, sf::RenderWindow& window);
 	virtual void LoopRender(sf::RenderWindow& window);
+
+	//GameInit()안에 Loop를 호출해도 되지만
+	//자식게임에서 __super()를 일일히 호출해야하므로 MyGamesMain.cpp에서 명시적으로 호출합니다
+	void DoLoop(MyGamesMain* main);
 private:
 	void Loop();
 protected:

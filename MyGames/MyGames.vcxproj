@@ -31,6 +31,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGamesMain.cpp" />
     <ClCompile Include="Snake\SnakeMain.cpp" />
+    <ClCompile Include="Survivors\SurvivorsMain.cpp" />
+    <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp" />
+    <ClCompile Include="Survivors\Unit\Survivors_Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStarTest\AStarTestMain.h" />
@@ -44,6 +47,9 @@
     <ClInclude Include="Invaders\Invaders_Enemy.h" />
     <ClInclude Include="MyGamesMain.h" />
     <ClInclude Include="Snake\SnakeMain.h" />
+    <ClInclude Include="Survivors\SurvivorsMain.h" />
+    <ClInclude Include="Survivors\Unit\Survivors_Hero.h" />
+    <ClInclude Include="Survivors\Unit\Survivors_Unit.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -31,6 +31,12 @@
     <Filter Include="소스 파일\Snake">
       <UniqueIdentifier>{07f07a89-0bfc-43e3-8778-69bb6e1508b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Survivors">
+      <UniqueIdentifier>{ac97cdc6-d938-40c4-b916-383a1f77ab3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Survivors\Unit">
+      <UniqueIdentifier>{dbeb6850-6cc2-4d22-a72a-4ec6bf78bb1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +75,15 @@
     <ClCompile Include="Snake\SnakeMain.cpp">
       <Filter>소스 파일\Snake</Filter>
     </ClCompile>
+    <ClCompile Include="Survivors\SurvivorsMain.cpp">
+      <Filter>소스 파일\Survivors</Filter>
+    </ClCompile>
+    <ClCompile Include="Survivors\Unit\Survivors_Unit.cpp">
+      <Filter>소스 파일\Survivors\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp">
+      <Filter>소스 파일\Survivors\Unit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGamesMain.h">
@@ -103,6 +118,15 @@
     </ClInclude>
     <ClInclude Include="Snake\SnakeMain.h">
       <Filter>소스 파일\Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="Survivors\SurvivorsMain.h">
+      <Filter>소스 파일\Survivors</Filter>
+    </ClInclude>
+    <ClInclude Include="Survivors\Unit\Survivors_Unit.h">
+      <Filter>소스 파일\Survivors\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Survivors\Unit\Survivors_Hero.h">
+      <Filter>소스 파일\Survivors\Unit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
