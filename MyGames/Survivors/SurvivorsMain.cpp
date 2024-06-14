@@ -38,7 +38,7 @@ void SurvivorsMain::LoopRender(sf::RenderWindow& window)
 {
 	if (_hero == nullptr) return;
 
-	window.draw(*_hero->GetSprite());
+	_hero->LoopRender(window);
 }
 
 sf::Texture& SurvivorsMain::GetUnitTexture() { return _unit_texture; }

@@ -145,7 +145,7 @@ void MyGamesMain::LoopRender()
     _window.clear(sf::Color(128, 128, 128));
 
     for (Button& button : _rendering_buttons)
-        button.draw(_window);
+        button.Draw(_window);
 
     _window.display();
 }

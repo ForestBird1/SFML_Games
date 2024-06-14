@@ -37,6 +37,12 @@
     <Filter Include="소스 파일\Survivors\Unit">
       <UniqueIdentifier>{dbeb6850-6cc2-4d22-a72a-4ec6bf78bb1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI\Button">
+      <UniqueIdentifier>{3fff2b34-7144-4efa-9ef5-a2fd0e2f1341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI\ProgressBar">
+      <UniqueIdentifier>{9bd78aad-d954-4f2f-bbe7-5b88ee52f450}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,9 +66,6 @@
     <ClCompile Include="Containers\MyArray.cpp">
       <Filter>소스 파일\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="Button\Button.cpp">
-      <Filter>소스 파일\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Invaders\InvadersMain.cpp">
       <Filter>소스 파일\Invaders</Filter>
     </ClCompile>
@@ -84,6 +87,15 @@
     <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp">
       <Filter>소스 파일\Survivors\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ProgressBar\ProgressBar.cpp">
+      <Filter>소스 파일\UI\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Button\Button.cpp">
+      <Filter>소스 파일\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UI.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGamesMain.h">
@@ -103,9 +115,6 @@
     </ClInclude>
     <ClInclude Include="Containers\MyArray.h">
       <Filter>소스 파일\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Button\Button.h">
-      <Filter>소스 파일\UI</Filter>
     </ClInclude>
     <ClInclude Include="Invaders\InvadersMain.h">
       <Filter>소스 파일\Invaders</Filter>
@@ -127,6 +136,15 @@
     </ClInclude>
     <ClInclude Include="Survivors\Unit\Survivors_Hero.h">
       <Filter>소스 파일\Survivors\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Button\Button.h">
+      <Filter>소스 파일\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ProgressBar\ProgressBar.h">
+      <Filter>소스 파일\UI\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UI.h">
+      <Filter>소스 파일\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

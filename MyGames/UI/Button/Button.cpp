@@ -61,7 +61,7 @@ void Button::setPosition(float x, float y)
 const sf::Vector2f Button::GetTextPosition() const { return buttonText.getPosition(); }
 const sf::Color Button::GetColor() const { return buttonShape.getFillColor(); }
 
-void Button::draw(sf::RenderWindow& window)
+void Button::Draw(sf::RenderWindow& window)
 {
 	window.draw(buttonShape);
 	window.draw(buttonText);

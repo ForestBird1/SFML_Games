@@ -71,7 +71,7 @@ void AStarTestMain::LoopRender(sf::RenderWindow& window)
 	{
 		for (size_t i_col = 0; i_col < _column; ++i_col)
 		{
-			_tiles[i_row][i_col].GetTileButton().draw(window);
+			_tiles[i_row][i_col].GetTileButton().Draw(window);
 		}
 	}
 

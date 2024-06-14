@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-#include "../Button/Button.h"
+#include "../UI/Button/Button.h"
 
 class MyGamesMain;
 class AStarTestMain;

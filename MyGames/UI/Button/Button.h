@@ -1,8 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "../UI.h"
 #include <functional>
 
-class Button
+class Button : public UI
 {
 public:
     Button();
@@ -17,7 +17,7 @@ public:
 
     void setPosition(float x, float y);
 
-    void draw(sf::RenderWindow& window);
+    void Draw(sf::RenderWindow& window) override;
 
 
     void setCallback(std::function<void()> callback);

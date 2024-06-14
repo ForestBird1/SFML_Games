@@ -23,7 +23,6 @@
     <ClCompile Include="AStarTest\AStarTile.cpp" />
     <ClCompile Include="BasedGame.cpp" />
     <ClCompile Include="BreakoutGame\BreakoutGameMain.cpp" />
-    <ClCompile Include="Button\Button.cpp" />
     <ClCompile Include="Containers\MyArray.cpp" />
     <ClCompile Include="Invaders\InvadersMain.cpp" />
     <ClCompile Include="Invaders\Invaders_Bullet.cpp" />
@@ -34,13 +33,15 @@
     <ClCompile Include="Survivors\SurvivorsMain.cpp" />
     <ClCompile Include="Survivors\Unit\Survivors_Hero.cpp" />
     <ClCompile Include="Survivors\Unit\Survivors_Unit.cpp" />
+    <ClCompile Include="UI\Button\Button.cpp" />
+    <ClCompile Include="UI\ProgressBar\ProgressBar.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStarTest\AStarTestMain.h" />
     <ClInclude Include="AStarTest\AStarTile.h" />
     <ClInclude Include="BasedGame.h" />
     <ClInclude Include="BreakoutGame\BreakoutGameMain.h" />
-    <ClInclude Include="Button\Button.h" />
     <ClInclude Include="Containers\MyArray.h" />
     <ClInclude Include="Invaders\InvadersMain.h" />
     <ClInclude Include="Invaders\Invaders_Bullet.h" />
@@ -50,6 +51,9 @@
     <ClInclude Include="Survivors\SurvivorsMain.h" />
     <ClInclude Include="Survivors\Unit\Survivors_Hero.h" />
     <ClInclude Include="Survivors\Unit\Survivors_Unit.h" />
+    <ClInclude Include="UI\Button\Button.h" />
+    <ClInclude Include="UI\ProgressBar\ProgressBar.h" />
+    <ClInclude Include="UI\UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
