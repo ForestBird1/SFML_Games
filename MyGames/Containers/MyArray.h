@@ -41,6 +41,11 @@ public:
 		{
 			return pos == iter.pos;
 		}
+		iterator& operator+=(std::ptrdiff_t offset)
+		{
+			pos += offset;
+			return *this; 
+		}
 
 		//ÀüÀ§
 		iterator& operator++()

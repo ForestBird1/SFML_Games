@@ -58,8 +58,8 @@ void SV_Hero::DoMove(sf::Event& event, const float f_delta_time)
         v_velocity.y *= 0.707107f;
     }
 
-    v_velocity.x *= _move_speed * f_delta_time;
-    v_velocity.y *= _move_speed * f_delta_time;
+    v_velocity.x *= _info_unit.move_speed * f_delta_time;
+    v_velocity.y *= _info_unit.move_speed * f_delta_time;
     _sprite->move(v_velocity);
 }
 
@@ -75,14 +75,13 @@ void SV_Hero::TickUpdateUI()
 
 void SV_Hero::LoopRender(sf::RenderWindow& window)
 {
+    __super::LoopRender(window);
     if (_sprite == nullptr) return;
     if (_hp_bar == nullptr) return;
 
     window.draw(*_sprite);
     _hp_bar->Draw(window);
 }
-
-sf::Sprite* SV_Hero::GetSprite() { return _sprite; }
 
 SV_Hero::~SV_Hero()
 {
